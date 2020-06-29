@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "entrega1-cd65d": {
+      "hosting": {
+        "ProyectoFinal": [
+          "entrega1-cd65d"
+        ]
+      }
+    }
+  }
+}

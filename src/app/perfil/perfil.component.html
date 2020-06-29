@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="col-12 mt-5">
+        <h1>Info clientes</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="Nombre">Nombre</th>
+                    <th scope="Edad">Apellido</th>
+                    <th scope="Apellido">Edad</th>
+                    <th scope="Correo">Correo</th>
+                    <th scope="Activo">Activo</th>
+                    <th scope="Fecha">Dia Inscripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clientes">
+                    <td>{{cliente.data.Nombre}}</td>
+                    <td>{{cliente.data.Apellido}}</td>
+                    <td>{{cliente.data.Edad}}</td>
+                    <td>{{cliente.data.Correo}}</td>
+                    <td>{{cliente.data.Activo}}</td>
+                    <td>{{cliente.data.DiaInscripcion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-12 mt-5">
+            <h1>Info Cursos</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="Nombre">Curso</th>
+                        <th scope="Edad">Impartido por</th>
+                        <th scope="Apellido">Hora</th>
+                        <th scope="Correo">Ubicacion</th>
+                        <th scope="Activo">Lugares Disponibles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let curso of cursos">
+                        <td>{{curso.data.Curso}}</td>
+                        <td>{{curso.data.Imparte}}</td>
+                        <td>{{curso.data.Hora}}</td>
+                        <td>{{curso.data.Ubicacion}}</td>
+                        <td>{{curso.data.Lugares}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

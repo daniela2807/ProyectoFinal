@@ -1,0 +1,69 @@
+<div
+  class="container"
+  fxLayout="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="30px"
+  fxLayoutGap.xs="0"
+>
+  <div class="img">
+    <img src="../../assets/Contact.png" alt="" />
+  </div>
+  <div
+    class="container"
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="30px"
+    fxLayoutGap.xs="0"
+  >
+    <div fxFlex="1 1 30%" class="ml-5">
+      <h3 class="mat-h3 accent-color">¡Hola!</h3>
+      <p>
+        Escribe tus datos y cuéntanos tu inquietud. Te daremos una respuesta en
+        menos de 24 horas hábiles.
+      </p>
+    </div>
+    <div
+      fxFlex="1 1 70%"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="30px"
+    >
+      <form class="example-form" [formGroup]="contacto" (ngSubmit)="Correo()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre:</mat-label>
+          <input matInput placeholder="Tu nombre" formControlName="Nombre"  required />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido:</mat-label>
+          <input matInput placeholder="Tu apellido" formControlName="Apellido" required />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo Electronico:</mat-label>
+          <input
+            matInput
+            formControlName="Correo"
+            type="email"
+            placeholder="correo@example.com"
+            required
+          />
+        </mat-form-field>
+        <mat-radio-group>
+          <mat-radio-button value="socio">Soy socio</mat-radio-button>
+          <mat-radio-button value="nosocio">No soy socio</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field class="example-full-width">
+          <mat-label>Asunto:</mat-label>
+          <input matInput placeholder="¿Cuál es el tema?" formControlName="Asunto"  required />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput placeholder="Cuéntanos..." formControlName="Mensaje" required></textarea>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Enviar</button>
+      </form>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,77 @@
+<div
+  class="container"
+  fxLayout="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="30px"
+  fxLayoutGap.xs="0"
+  class="mt-5"
+>
+  <div 
+  fxLayout="row"
+  fxLayout.lt-sm="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="30px"
+  fxLayoutGap.xs="0"
+  class="mt-5">
+    <div fxFlex="1 1 50%" class="ml-5">
+      <h1 class="mat-h1 primary-color">Espacio del cliente</h1>
+      <h3 class="mat-h3 accent-color">Accede a tu espacio para:</h3>
+      <div
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutAlign="center"
+        fxLayoutGap="30px"
+        fxLayoutGap.xs="30px"
+      >
+        <mat-icon class="md-36">info_outline</mat-icon>
+        <p>
+          Acceder a la información relacionada con tu cuenta
+        </p>
+        <mat-icon class="md-36">sentiment_very_satisfied</mat-icon>
+        <p>Ver los cursos a los que te has inscrito</p>
+      </div>
+    </div>
+    <div
+      fxFlex="1 1 50%"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="30px"
+    > 
+        <h3 class="mat'h3 accent-color">Accede a tu cuenta</h3>
+        <form  [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="form-group">
+              <label for="email">Email: </label>
+              <input #correo type="email" class="form-control" formControlName="Correo">
+          </div>
+          <div class="form-group">
+              <form action="password">Contraseña</form>
+              <input type="password" class="form-control" formControlName="Contraseña">
+          </div>
+          <div class="form-group">
+              <small style="color: red;" id="Comprobar"></small>
+          </div>
+          <div class="form-group">
+              <small>Olvidaste tu contraseña? &nbsp;<button class="contra" (click)="Restablecer(correo.value)">Restablecer</button></small>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+      </form>
+      <!-- <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo Electronico:</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="correo@example.com"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Contraseña:</mat-label>
+            <input matInput placeholder="Contraseña de tu cuenta" required />
+          </mat-form-field>
+          <button mat-raised-button color="primary">Ingresar</button>
+      </form> -->
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
