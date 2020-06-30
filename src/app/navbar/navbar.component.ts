@@ -59,7 +59,7 @@ export class NavbarComponent implements OnInit {
   getSpeechData(){
     this.speechData = this.spk.speechData;
     //this.index = this.speechData.findIndex();
-    console.log(this.speechData);
+    //console.log(this.speechData);
   }
 
   setVolume(v){

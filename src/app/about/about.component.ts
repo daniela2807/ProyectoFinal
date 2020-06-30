@@ -1,3 +1,4 @@
+import { MessageService } from './../services/message.service';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 
@@ -9,7 +10,11 @@ import {FormControl, Validators} from '@angular/forms';
 export class AboutComponent implements OnInit {
   
   email = new FormControl('', [Validators.required, Validators.email]);
-  constructor() { }
+  constructor( public messageService: MessageService ) { 
+    messageService.firstapi().subscribe( (data) => {
+      console.log(data);
+    });
+  }
 
   ngOnInit(): void {
   }

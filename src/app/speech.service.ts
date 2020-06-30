@@ -14,7 +14,7 @@ export class SpeechService{
   constructor() {
     this.speech = new Speech(); 
     if(this.speech.hasBrowserSupport()) {
-        console.log("Soportado!!!")
+        //console.log("Soportado!!!")
         this.speech.init({
                 'volume': 1,
                 'lang': 'es-MX',
@@ -23,26 +23,26 @@ export class SpeechService{
                 'splitSentences': true,
                 'listeners': {
                     'onvoiceschanged': (voices) => {
-                        console.log("Cambio de voces", voices)
+                        //console.log("Cambio de voces", voices)
                     }
                 }
         }).then( (data) => {
-            console.log("Speech is ready, voices are available", data);
+            //console.log("Speech is ready, voices are available", data);
             this.speechData = data;
-            console.log(this.speechData);
+            //console.log(this.speechData);
             data.voices.forEach(voice => {
-              console.log(voice.name + " "+ voice.lang)
+              //console.log(voice.name + " "+ voice.lang)
             });
         }).catch( e => {
-            console.error("An error occured while initializing : ", e)
+            //console.error("An error occured while initializing : ", e)
         })        
     }
   }
 
   start(text: string){
-    console.log(text);
+    //console.log(text);
     this.result = text;
-    console.log(this.result);
+    //console.log(this.result);
     this.speech.speak({
         text: this.result,
     }).then(() => {
@@ -61,14 +61,14 @@ export class SpeechService{
   }
 
   setLanguage(i){
-    console.log(i);
-    console.log(this.speechData.voices[i].lang + this.speechData.voices[i].name);
+    //console.log(i);
+    //console.log(this.speechData.voices[i].lang + this.speechData.voices[i].name);
     this.speech.setLanguage(this.speechData.voices[i].lang);
     this.speech.setVoice(this.speechData.voices[i].name);
   }
 
   getSpeechData(){
-    console.log(this.speechData);
+    //console.log(this.speechData);
     return this.speechData;
   }
 
@@ -77,11 +77,11 @@ export class SpeechService{
   }
 
   getVolume(){
-    console.log(this.speech.volume);
+    //console.log(this.speech.volume);
     return this.speech.volume;
   }
 
   prueba(){
-    console.log(this.speechData);
+    //console.log(this.speechData);
   }
 }
