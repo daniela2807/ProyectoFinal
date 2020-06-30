@@ -39,14 +39,14 @@
     > 
         <h3 class="mat'h3 accent-color">Accede a tu cuenta</h3>
         <form  [formGroup]="loginForm" (ngSubmit)="onLogin()">
-          <div class="form-group">
-              <label for="email">Email: </label>
-              <input #correo type="email" class="form-control" formControlName="Correo">
-          </div>
-          <div class="form-group">
-              <form action="password">Contraseña</form>
-              <input type="password" class="form-control" formControlName="Contraseña">
-          </div>
+          <mat-form-field class="example-full-width" >
+            <mat-label>Email:</mat-label>
+              <input matInput #correo type="email" class="form-control" formControlName="Correo">
+          </mat-form-field>
+          <mat-form-field class="example-full-width" >
+            <mat-label>Contraseña:</mat-label>
+              <input matInput type="password" class="form-control" formControlName="Contraseña">
+          </mat-form-field>
           <div class="form-group">
               <small style="color: red;" id="Comprobar"></small>
           </div>
