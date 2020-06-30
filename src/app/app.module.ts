@@ -23,6 +23,8 @@ import { CursesComponent } from './curses/curses.component';
 import { RegisterComponent } from './register/register.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PerfiladmiComponent } from './perfiladmi/perfiladmi.component';
+import { HttpClientModule} from '@angular/common/http';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -51,9 +53,10 @@ import { PerfiladmiComponent } from './perfiladmi/perfiladmi.component';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

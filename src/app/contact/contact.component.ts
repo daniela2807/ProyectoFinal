@@ -1,3 +1,4 @@
+import { MessageService } from '../services/message.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
@@ -15,13 +16,16 @@ export class ContactComponent implements OnInit {
     Mensaje: new FormControl(''),
   });
 
-  constructor() { }
+  constructor(public _MessageService: MessageService) { }
 
   ngOnInit(): void {
   }
 
-  Correo(){
-    const { Nombre, Apellido, Correo, Asunto, Mensaje} = this.contacto.value;
+  Correo(form) {
+    console.log(form);
+    this._MessageService.sendMessage(form).subscribe(() => {
+      console.log('Mensaje enviado correctamente');
+   });
   }
 
 }

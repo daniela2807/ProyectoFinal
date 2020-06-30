@@ -29,19 +29,20 @@
       fxLayoutAlign="center center"
       fxLayoutGap="30px"
     >
-      <form class="example-form" [formGroup]="contacto" (ngSubmit)="Correo()">
+      <form [formGroup]="contacto" (ngSubmit)="Correo(contacto.value)">
         <mat-form-field class="example-full-width">
           <mat-label>Nombre:</mat-label>
-          <input matInput placeholder="Tu nombre" formControlName="Nombre"  required />
+          <input matInput placeholder="Tu nombre" class="form-control" formControlName="Nombre"  required />
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Apellido:</mat-label>
-          <input matInput placeholder="Tu apellido" formControlName="Apellido" required />
+          <input matInput placeholder="Tu apellido" class="form-control" formControlName="Apellido" required />
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>Correo Electronico:</mat-label>
           <input
             matInput
+            class="form-control"
             formControlName="Correo"
             type="email"
             placeholder="correo@example.com"
@@ -54,12 +55,12 @@
         </mat-radio-group>
         <mat-form-field class="example-full-width">
           <mat-label>Asunto:</mat-label>
-          <input matInput placeholder="¿Cuál es el tema?" formControlName="Asunto"  required />
+          <input matInput placeholder="¿Cuál es el tema?" class="form-control" formControlName="Asunto"  required />
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label>Descripción</mat-label>
-          <textarea matInput placeholder="Cuéntanos..." formControlName="Mensaje" required></textarea>
+          <textarea matInput placeholder="Cuéntanos..." class="form-control" formControlName="Mensaje" required></textarea>
         </mat-form-field>
         <button type="submit" mat-raised-button color="primary">Enviar</button>
       </form>
