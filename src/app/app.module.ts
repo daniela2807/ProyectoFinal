@@ -2,8 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
+
+import { QRCodeModule } from 'angularx-qrcode';
+import { ChartsModule } from 'ng2-charts';
+
+
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
+
 import { environment } from './../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,7 +55,9 @@ import { MessageService } from './services/message.service';
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     ReactiveFormsModule,
+    QRCodeModule,
     AngularFireModule,
+    ChartsModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MaterialModule,

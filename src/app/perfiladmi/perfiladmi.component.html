@@ -53,6 +53,16 @@
                     class="fas fa-trash-alt"></i> Eliminar</button></td>
               <td><button type="button" class="btn btn-success" (click)="editCurso(curso.id)"><i 
                     class="fas fa-pencil-alt"></i> Editar</button></td>
+
+                    <td *ngIf="curso==cursos[0]"  rowspan="5">
+                      <button (click)="grafica()">Estadisticas</button>
+                      <div style="display: block" *ngIf="mostrarGraf==true">
+                        <canvas baseChart
+                            [data]="doughnutChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType"></canvas>
+                          
+              </div></td>
             </tr>
           </tbody>
         </table>

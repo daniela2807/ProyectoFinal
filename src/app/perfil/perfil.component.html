@@ -44,6 +44,7 @@
                         <td>{{curso.data.Hora}}</td>
                         <td>{{curso.data.Ubicacion}}</td>
                         <td>{{curso.data.Lugares}}</td>
+                        <td rowspan="5" *ngIf="curso==cursos[0]" ><div class="col-8"><qrcode  qrc-element-type="text" [qrdata]="ngxQrcode2" ></qrcode >  </div>   </td>
                     </tr>
                 </tbody>
             </table>
