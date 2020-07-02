@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 @Component({
   selector: "app-perfil",
-  templateUrl: "./perfil.component.html",
+  templateUrl:  './perfil.component.html',
   styleUrls: ["./perfil.component.css"],
 })
 export class PerfilComponent implements OnInit {
@@ -12,13 +12,16 @@ export class PerfilComponent implements OnInit {
   public cursos2 = [];
   public clientes = [];
   public user$: Observable<any> = this.firestoreservice.afAuth.user;
+  mostrarCubo: boolean = false;
 
   auxData: string;
-  auxData2: string; //Cambios
-  cad1: string = "Curso: ";
-  salto: string = " \n";
-  cad2: string = "Profesor: ";
-  cad3: string = "Horario: ";
+  auxData2: string;  //Cambios 
+  cad: string ="--CURSOS--";
+  cad1: string ="Curso: ";
+  salto: string= " \n";
+  cad2: string ="Profesor: ";
+  cad3: string ="Horario: ";
+  cad4: string ="Cupos: ";
   ngxQrcode2: any;
 
   constructor(private firestoreservice: FirestoreService) {}
@@ -48,11 +51,16 @@ export class PerfilComponent implements OnInit {
         this.auxData = this.cad1.concat(
           JSON.stringify(this.cursos2),
           this.salto
-        );
-        // console.log(this.cursos2[2].)
+        );  
       });
       this.ngxQrcode2 = this.auxData;
     });
+  }
+
+  public cubo() {
+    this.mostrarCubo = true;
+
+    console.log(this.cursos2[2]);
   }
 
 }

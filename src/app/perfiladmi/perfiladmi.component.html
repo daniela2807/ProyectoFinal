@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-12 mt-5">
-      <h1>Info clientes</h1>
+      <h1>Informacion Clientes</h1>
       <table class="table">
         <thead>
           <tr>
@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let cliente of clientes">
+          <tr *ngFor="let cliente of clientes; index as i">
             <td>{{cliente.data.Nombre}}</td>
             <td>{{cliente.data.Apellido}}</td>
             <td>{{cliente.data.Edad}}</td>
@@ -23,13 +23,29 @@
             <td>{{cliente.data.DiaInscripcion}}</td>
             <td><button type="button" class="btn btn-success" (click)="deleteClient(cliente.id)"><i
                   class="fas fa-trash-alt"></i> Eliminar</button></td>
+                 
+                 
+                  <td *ngIf="cliente==clientes[0]"  rowspan="20">
+                    <button (click)="grafica()">Estadisticas</button>
+                    <div style="display: block" *ngIf="mostrarGraf==true">
+                        <canvas baseChart
+                                [datasets]="barChartData"
+                                [labels]="barChartLabels"
+                                [options]="barChartOptions"
+                                [legend]="barChartLegend"
+                                [chartType]="barChartType">
+                        </canvas>
+                    </div>
+              </td>
+
+
           </tr>
         </tbody>
       </table>
     </div>
     <div class="row">
       <div class="col-12 mt-5">
-        <h1>Info Cursos</h1>
+        <h1>Informacion Cursos</h1>
         <table class="table">
           <thead>
             <tr>
@@ -49,20 +65,17 @@
               <td>{{curso.data.Hora}}</td>
               <td>{{curso.data.Ubicacion}}</td>
               <td>{{curso.data.Lugares}}</td>
-              <td><button type="button" class="btn btn-success" (click)="deleteCurso(curso.id)"><i
-                    class="fas fa-trash-alt"></i> Eliminar</button></td>
-              <td><button type="button" class="btn btn-success" (click)="editCurso(curso.id)"><i 
-                    class="fas fa-pencil-alt"></i> Editar</button></td>
+              <td>
+                <button type="button" class="btn btn-success" (click)="deleteCurso(curso.id)">
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-success" (click)="editCurso(curso.id)">
+                  <i class="fas fa-pencil-alt"></i> Editar
+                </button>
+              </td>
 
-                    <td *ngIf="curso==cursos[0]"  rowspan="5">
-                      <button (click)="grafica()">Estadisticas</button>
-                      <div style="display: block" *ngIf="mostrarGraf==true">
-                        <canvas baseChart
-                            [data]="doughnutChartData"
-                            [labels]="doughnutChartLabels"
-                            [chartType]="doughnutChartType"></canvas>
-                          
-              </div></td>
             </tr>
           </tbody>
         </table>
