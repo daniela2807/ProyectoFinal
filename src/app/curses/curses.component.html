@@ -11,31 +11,17 @@
   </div>
   <div>
     <div class="mat-elevation-z8">
-      <table
-        mat-table
-        [dataSource]="dataSource"
-        class="mat-elevation-z8"
-        matSort
-      >
-        <ng-container matColumnDef="Curso">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Curso</th>
-          <td mat-cell *matCellDef="let curso">{{ curso.Curso }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Nombre">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
-          <td mat-cell *matCellDef="let curso">
-            {{ curso.Nombre }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Cupo">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cupo</th>
-          <td mat-cell *matCellDef="let curso">{{ curso.Cupo }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+      <table>
+        <tr>
+          <th>Curso</th>
+          <th>Impartido por</th>
+          <th>Hora</th>
+        </tr>
+        <tr *ngFor="let curso of cursos">
+          <td>{{curso.data.Curso}}</td>
+          <td>{{curso.data.Imparte}}</td>
+          <td>{{curso.data.Hora}}</td>
+        </tr>
       </table>
     </div>
   </div>
