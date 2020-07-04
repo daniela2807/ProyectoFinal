@@ -31,6 +31,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { PerfiladmiComponent } from './perfiladmi/perfiladmi.component';
 import { HttpClientModule} from '@angular/common/http';
 import { MessageService } from './services/message.service';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { MessageService } from './services/message.service';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    SimpleNotificationsModule.forRoot(),
+    NgbModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -15,7 +17,7 @@ export class AdminComponent implements OnInit {
   });
 
 
-  constructor(private authSvc: FirestoreService, private router: Router) { }
+  constructor(private authSvc: FirestoreService, private router: Router, private notificationService: NotificationsService) { }
 
   ngOnInit(): void {
   }
@@ -32,9 +34,11 @@ export class AdminComponent implements OnInit {
       else if (user) {
         //redirect to homepage
         this.router.navigate(['/home']);
+      } else if(Correo == "" || Contraseña == ""){
+        this.onError('Por favor llena todo los campos >:( ');
       }
       else {
-        document.getElementById('Comprobar').innerText = "Cuenta no encontrada, verifica";
+        this.onError('Cuenta no encontrada :( ');
       }
     }
     catch (error) {
@@ -53,5 +57,16 @@ export class AdminComponent implements OnInit {
 
     });
   }
+
+  onError(message){
+    this.notificationService.error('Error', message, {
+      position: ['bottom','right'],
+      timeOut: 3500,
+      animate: 'fade',
+      showProgressBar: true
+    });
+  }
+
+  
 
 }
