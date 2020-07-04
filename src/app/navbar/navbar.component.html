@@ -47,7 +47,23 @@
           ><mat-icon><i class="fas fa-info-circle"></i></mat-icon> FAQ</a
         >
       </li>
-      
+      <li>
+        <mat-list-item [matMenuTriggerFor]="audio">
+          <mat-icon>unfold_more</mat-icon>
+          <a matline>Accesibilidad</a>
+        </mat-list-item>
+        <mat-menu #audio="matMenu">
+          <button mat-menu-item  (click)="start()">Iniciar Lectura</button>
+                    <button mat-menu-item (click)="pause()"> Pausar </button>
+                    <button mat-menu-item (click)="resume()"> Reanudar </button>
+                    <br>
+                    <select #langSelect *ngIf="speechData" (change)="setLanguage(langSelect.value)">
+                    <option [value]="i" *ngFor="let voice of speechData.voices;let i = index;">
+                      {{voice.name}} - {{voice.lang}}
+                    </option>
+                    </select>
+        </mat-menu>
+      </li>
       <li>
         <ng-container *ngIf="user$ | async as user; else login">
           <mat-list-item [matMenuTriggerFor]="menu">

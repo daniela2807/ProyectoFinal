@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  
 
   @Output() public sidenavToggle = new EventEmitter();
 
@@ -36,6 +37,7 @@ export class NavbarComponent implements OnInit {
 
   start(){
     this.html = document.getElementById('toRead').textContent;
+    this.spk.stop();
     this.spk.start(this.html);
   }
   pause(){
