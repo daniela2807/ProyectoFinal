@@ -85,7 +85,11 @@ export class SpeechService{
     return this.speech.volume;
   }
 
-  prueba(){
-    //console.log(this.speechData);
+  isPaused(){
+    return this.speech.paused();
+  }
+
+  isSpeaking(){
+    return this.speech.speaking();
   }
 }

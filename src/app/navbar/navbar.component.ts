@@ -5,6 +5,7 @@ import { MediaObserver } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -29,6 +30,7 @@ export class NavbarComponent implements OnInit {
   onLogout(){
     this.firestoreservice.logout();
     this.router.navigate(['/admin']);
+    this.spk.stop();
   }
 
   public onToggleSidenav = () => {
@@ -39,6 +41,9 @@ export class NavbarComponent implements OnInit {
     this.html = document.getElementById('toRead').textContent;
     this.spk.stop();
     this.spk.start(this.html);
+  }
+  stop(){
+    this.spk.stop();
   }
   pause(){
     this.spk.pause();
@@ -56,6 +61,7 @@ export class NavbarComponent implements OnInit {
         route.navigate(['/perfil', correo]);
       }
     });
+    this.spk.stop();
   }
 
   getSpeechData(){

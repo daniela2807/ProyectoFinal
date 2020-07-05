@@ -1,5 +1,35 @@
 <div class="container">
+  <div class="col-12 mt-5">
+    <h2 class="mat-display-3">Informacion clientes</h2>
+    <mat-spinner color="accent" style="margin: 2% auto;" *ngIf="showSpinner"></mat-spinner>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="Nombre">Nombre</th>
+          <th scope="Edad">Apellido</th>
+          <th scope="Apellido">Edad</th>
+          <th scope="Correo">Correo</th>
+          <th scope="Activo">Activo</th>
+          <th scope="Fecha">Dia Inscripcion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container ng-show="false" *ngFor="let cliente of clientes">
+          <tr *ngIf="cliente.data.Correo === correo">
+            <td>{{ cliente.data.Nombre }}</td>
+            <td>{{ cliente.data.Apellido }}</td>
+            <td>{{ cliente.data.Edad }}</td>
+            <td>{{ cliente.data.Correo }}</td>
+            <td>{{ cliente.data.Activo }}</td>
+            <td>{{ cliente.data.DiaInscripcion }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
     <div class="col-12 mt-5">
+<<<<<<< HEAD
         <h2 class="mat-display-3">Informacion clientes</h2>
         <table class="table table-dark">
         <h1>Informacion Personal</h1>
@@ -112,3 +142,87 @@
             </table>
         </div>
     </div>
+=======
+      <h2 class="mat-display-3">Informacion Cursos</h2>
+      <mat-spinner color="accent" style="margin: 2% auto;" *ngIf="showSpinner1"></mat-spinner>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="Nombre">Curso</th>
+            <th scope="Edad">Impartido por</th>
+            <th scope="Apellido">Hora</th>
+            <th scope="Correo">Ubicacion</th>
+            <th scope="Activo">Lugares Disponibles</th>
+            <th>Información del Curso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curso of cursos; index as i">
+            <td>{{ curso.data.Curso }}</td>
+            <td>{{ curso.data.Imparte }}</td>
+            <td>{{ curso.data.Hora }}</td>
+            <td>{{ curso.data.Ubicacion }}</td>
+            <td>{{ curso.data.Lugares }}</td>
+            <td>
+              <button
+                class="btn btn-outline-primary mb-2 mr-2"
+                (click)="openWindowCustomClass(content)"
+                id="btn{{ i }}"
+              >
+                Ver QR
+              </button>
+            </td>
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title">Información del Curso</h4>
+                <button
+                  type="button"
+                  class="close"
+                  aria-label="Close"
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-center">
+                <qrcode
+                  qrc-element-type="text"
+                  [qrdata]="
+                    cad.concat(
+                      salto,
+                      salto,
+                      cad1,
+                      curso.data.Curso,
+                      salto,
+                      cad2,
+                      curso.data.Imparte,
+                      salto,
+                      cad3,
+                      curso.data.Hora,
+                      salto,
+                      cad4,
+                      curso.data.Lugares,
+                      salto,
+                      salto
+                    )
+                  "
+                >
+                </qrcode>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="modal.close('Close click')"
+                >
+                  Close
+                </button>
+              </div>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+>>>>>>> 2431506dcd616062c19a92c6bc4b1e15df43ff2a
