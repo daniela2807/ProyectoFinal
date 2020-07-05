@@ -2,11 +2,8 @@
 import { FirestoreService } from "./../firestore.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-<<<<<<< HEAD
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-=======
 import {ActivatedRoute , Params, Router} from '@angular/router';
->>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
 
 @Component({
   selector: "app-perfil",
@@ -33,11 +30,12 @@ export class PerfilComponent implements OnInit {
   
   ngxQrcode2: any;
 
-<<<<<<< HEAD
-  constructor(private firestoreservice: FirestoreService, private modalService: NgbModal) {}
-=======
-  constructor(private firestoreservice: FirestoreService, private route: ActivatedRoute) {}
->>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
+  //para mostrar el spinner mientras se carga la info
+  showSpinner: boolean = true;
+  showSpinner1: boolean = true;
+
+  constructor(private firestoreservice: FirestoreService, private route: ActivatedRoute, private modalService: NgbModal) {}
+  
 
   ngOnInit() {
     this.correo=this.route.snapshot.paramMap.get('correo');
@@ -52,6 +50,7 @@ export class PerfilComponent implements OnInit {
         // client.data.DiaInscripcion = new Date(client.data.DiaInscripcion * 1000).toLocaleString();
         this.clientes.push(client);
       });
+      this.showSpinner = false;
     });
     this.firestoreservice.getCursos().subscribe((cursoSnapshot) => {
       this.cursos = [];
@@ -69,6 +68,7 @@ export class PerfilComponent implements OnInit {
         );  
       });
       this.ngxQrcode2 = this.auxData;
+      this.showSpinner1 = false;
     });
   }
 
@@ -79,7 +79,7 @@ export class PerfilComponent implements OnInit {
   }
 
   openWindowCustomClass(content) {
-    this.modalService.open(content, { windowClass: 'dark-modal', centered: true });
+    this.modalService.open(content, { centered: true });
   }
 
 }

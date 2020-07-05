@@ -19,6 +19,10 @@ export class PerfiladmiComponent implements OnInit {
   public currentStatus = 1;
   mostrarGraf: boolean = false;
 
+  //para mostrar el spinner mientras se carga la info
+  showSpinner: boolean = true;
+  showSpinner1: boolean = true;
+
   lugares = [];
   contador1: number = 0;
   contador2: number = 0;
@@ -156,6 +160,7 @@ export class PerfiladmiComponent implements OnInit {
             console.log("No lo hará.");
         }
       });
+      this.showSpinner = false;
     });
 
     this.firestoreservice.getCursos().subscribe((cursoSnapshot) => {
@@ -168,6 +173,7 @@ export class PerfiladmiComponent implements OnInit {
         });
       });
       this.lugares;
+      this.showSpinner1 = false;
     });
   }
 
