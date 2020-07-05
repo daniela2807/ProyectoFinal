@@ -29,6 +29,7 @@ export class PerfiladmiComponent implements OnInit {
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
+    maintainAspectRatio: false,
     responsive: true,
   };
 
@@ -200,20 +201,34 @@ export class PerfiladmiComponent implements OnInit {
   }
 
   public grafica() {
-    this.mostrarGraf = true;
-    this.barChartData = [
-      {
-        data: [
-          this.contador1,
-          this.contador2,
-          this.contador3,
-          this.contador4,
-          this.contador5,
-          this.contador6,
-        ],
-        label: "Edades",
-      },
-    ];
+    let buttonvalue = document.getElementById("grafica").innerText;
+    let button = document.getElementById("grafica");
+    if (buttonvalue == "Ocultar Grafica") {
+      document.getElementById("grafica").innerText = "Estadisticas";
+      this.mostrarGraf = false;
+      button.blur();
+    } else {
+      document.getElementById("grafica").innerText = "Ocultar Grafica";
+      this.mostrarGraf = true;
+      this.barChartData = [
+        {
+          data: [
+            this.contador1,
+            this.contador2,
+            this.contador3,
+            this.contador4,
+            this.contador5,
+            this.contador6,
+          ],
+          backgroundColor: "#7b1fa2",
+          hoverBackgroundColor: "#69f0ae",
+          borderColor: "#ffffff",
+          pointBackgroundColor: "#ffffff",
+          label: "Edades",
+        },
+      ];
+      button.blur();
+    }
   }
 
   public deleteCurso(documentId) {
@@ -265,11 +280,11 @@ export class PerfiladmiComponent implements OnInit {
           this.currentStatus = 1;
           this.newCursoForm.setValue({
             Curso: "",
-          Hora: "",
-          Imparte: "",
-          Lugares: "",
-          Ubicacion: "",
-          id: "",
+            Hora: "",
+            Imparte: "",
+            Lugares: "",
+            Ubicacion: "",
+            id: "",
           });
           console.log("Documento editado exitosamente");
         },

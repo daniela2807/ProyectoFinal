@@ -52,6 +52,10 @@ export class SpeechService{
     })
   }
 
+  stop(){
+    this.speech.cancel();
+  }
+
   pause(){
     this.speech.pause();
   }

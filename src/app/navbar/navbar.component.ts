@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  
 
   @Output() public sidenavToggle = new EventEmitter();
 
@@ -31,11 +32,12 @@ export class NavbarComponent implements OnInit {
   }
 
   public onToggleSidenav = () => {
-    this.sidenavToggle.emit();
+    this.sidenavToggle.emit("Hola");
   }
 
   start(){
     this.html = document.getElementById('toRead').textContent;
+    this.spk.stop();
     this.spk.start(this.html);
   }
   pause(){
@@ -45,13 +47,13 @@ export class NavbarComponent implements OnInit {
     this.spk.resume();
   }
 
-  ruta(){
+  ruta(correo: string){
     let route = this.router;
     this.firestoreservice.afAuth.onAuthStateChanged(function(user){
       if (user.email === 'admin@hotmail.com') {
         route.navigate(['/perfiladmi']);
       } else {
-        route.navigate(['/perfil']);
+        route.navigate(['/perfil', correo]);
       }
     });
   }

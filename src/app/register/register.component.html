@@ -1,40 +1,99 @@
-<div class="row">
-    <div class="col-md-6 mx-auto mt-5">
-      <div class="card">
-        <div class="card-body">
-          <form (ngSubmit)="newClient(newClientForm.value)" [formGroup]="newClientForm" if=form>
-            <h1>Registrarse</h1>
-            <mat-form-field class="example-full-width">
-              <mat-label>Nombre:</mat-label>
-              <!-- <label for="exampleInputEmail1">Nombre</label> -->
-              <input  matInput type="text" formControlName="Nombre" class="form-control" placeholder="Nombre">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Apellido:</mat-label>
-              <input  matInput type="text" formControlName="Apellido" class="form-control" placeholder="Apellido">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Edad:</mat-label>
-              <input matInput type="number" formControlName="Edad" class="form-control" placeholder="Edad">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Correo:</mat-label>
-              <input matInput type="mail" formControlName="Correo" class="form-control" placeholder="Correo">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Contraseña:</mat-label>
-              <input matInput type="password" formControlName="Contraseña" class="form-control" placeholder="Contraseña" id="contra1">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Confirmar Contraseña:</mat-label>
-              <input matInput type="password" formControlName="Contraseña2" class="form-control" placeholder="Contraseña" id="contra2">
-            </mat-form-field>
-            <div class="form-group">
-              <label id="nomatch" style="color: red;"></label>
-            </div>
-            <button type="submit" class="btn btn-large" [disabled]="!newClientForm.valid">Agregar</button>
-          </form>
-        </div>
+<div
+  fxLayout="column"
+  fxLayoutAlign="center"
+  fxLayoutGap="30px"
+  fxLayoutGap.xs="0"
+>
+  <div class="img">
+    <img src="../../assets/curso.png" alt="" />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <form
+          (ngSubmit)="newClient(newClientForm.value)"
+          [formGroup]="newClientForm"
+          if="form"
+        >
+          <h2 class="mat-display-3">Registrarse</h2>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nombre:</mat-label>
+            <!-- <label for="exampleInputEmail1">Nombre</label> -->
+            <input
+              matInput
+              type="text"
+              formControlName="Nombre"
+              placeholder="Nombre"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Apellido:</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="Apellido"
+              placeholder="Apellido"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Edad:</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="Edad"
+              placeholder="Edad"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Correo:</mat-label>
+            <input
+              matInput
+              type="mail"
+              formControlName="Correo"
+              placeholder="Correo"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Contraseña:</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="Contraseña"
+              placeholder="Contraseña"
+              id="contra1"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Confirmar Contraseña:</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="Contraseña2"
+              placeholder="Contraseña"
+              id="contra2"
+              required
+            />
+          </mat-form-field>
+          <div class="form-group">
+            <simple-notifications></simple-notifications>
+          </div>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            class="block"
+            [disabled]="!newClientForm.valid"
+          >
+            Agregar
+          </button>
+        </form>
       </div>
     </div>
   </div>
+</div>
+<app-footer></app-footer>

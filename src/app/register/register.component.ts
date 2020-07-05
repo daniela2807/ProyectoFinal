@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
   });
 
 
-  constructor(private firestoreservice: FirestoreService, private router: Router) { }
+  constructor(private firestoreservice: FirestoreService, private router: Router, private notificationService: NotificationsService) { }
 
   ngOnInit(): void {
   }
@@ -49,10 +50,10 @@ export class RegisterComponent implements OnInit {
       Contraseña: form.Contraseña
     }
     if (form.Contraseña.length < 5) {
-      document.getElementById("nomatch").innerText = "Contraseña muy corta";
+      this.onError('La contraseña debe ser mayor a 6 caracteres :( ');
     }
     else if(form.Contraseña !== form.Contraseña2) {
-      document.getElementById("nomatch").innerText = "Contraseñas no coinciden";
+      this.onError('Las contraseñas no coinciden :( ');
     }
     else {
       this.firestoreservice.createClient(data).then(() => {
@@ -79,5 +80,13 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  onError(message){
+    this.notificationService.error('Error', message, {
+      position: ['bottom','right'],
+      timeOut: 3500,
+      animate: 'fade',
+      showProgressBar: true
+    });
+  }
 
 }

@@ -1,5 +1,4 @@
 <div
-  class="container"
   fxLayout="column"
   fxLayoutAlign="center"
   fxLayoutGap="30px"
@@ -41,36 +40,20 @@
         <form  [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <mat-form-field class="example-full-width" >
             <mat-label>Email:</mat-label>
-              <input matInput #correo type="email" class="form-control" formControlName="Correo">
+              <input matInput #correo type="email" formControlName="Correo" required>
           </mat-form-field>
           <mat-form-field class="example-full-width" >
             <mat-label>Contraseña:</mat-label>
-              <input matInput type="password" class="form-control" formControlName="Contraseña">
+              <input matInput type="password" formControlName="Contraseña" required>
           </mat-form-field>
           <div class="form-group">
-              <small style="color: red;" id="Comprobar"></small>
+              <simple-notifications></simple-notifications>
           </div>
           <div class="form-group">
-              <small>Olvidaste tu contraseña? &nbsp;<button class="contra" (click)="Restablecer(correo.value)">Restablecer</button></small>
+              <a href="#" class="link" (click)="Restablecer(correo.value)">Olvidé mi contraseña</a>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+          <button mat-raised-button color="primary" class="block" type="submit">Ingresar</button>
       </form>
-      <!-- <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>Correo Electronico:</mat-label>
-          <input
-            matInput
-            type="email"
-            placeholder="correo@example.com"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Contraseña:</mat-label>
-            <input matInput placeholder="Contraseña de tu cuenta" required />
-          </mat-form-field>
-          <button mat-raised-button color="primary">Ingresar</button>
-      </form> -->
     </div>
   </div>
   <app-footer></app-footer>

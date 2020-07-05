@@ -1,111 +1,172 @@
-<div class="container">
+<div class="container-fluid">
+  <div class="col-12 mt-5 table-responsive">
+    <h2 class="mat-display-2 accent-color">Información Clientes</h2>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="Nombre">Nombre</th>
+          <th scope="Edad">Apellido</th>
+          <th scope="Apellido">Edad</th>
+          <th scope="Correo">Correo</th>
+          <th scope="Activo">Activo</th>
+          <th scope="Fecha">Dia Inscripcion</th>
+          <th scope="Eliminar">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes; index as i">
+          <td>{{ cliente.data.Nombre }}</td>
+          <td>{{ cliente.data.Apellido }}</td>
+          <td>{{ cliente.data.Edad }}</td>
+          <td>{{ cliente.data.Correo }}</td>
+          <td>{{ cliente.data.Activo }}</td>
+          <td>{{ cliente.data.DiaInscripcion }}</td>
+          <td>
+            <button
+              type="button"
+              mat-raised-button 
+              color="warn"
+              (click)="deleteClient(cliente.id)"
+            >
+              <i class="fas fa-trash-alt"></i> Eliminar
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row mt-5">
+    <div class="col-12" *ngFor="let cliente of clientes">      
+      <div *ngIf="cliente == clientes[0]" rowspan="20">
+        <button mat-raised-button id="grafica" class="block" color="primary"(click)="grafica()">Estadisticas</button>
+        <div *ngIf="mostrarGraf == true" id="Chart" class="mt-5" style="background-color: #BDBDBD">
+          <canvas
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+          >
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-12 mt-5">
-      <h1>Informacion Clientes</h1>
-      <table class="table">
+      <h2 class="mat-display-2 accent-color">Información Cursos</h2>
+      <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="Nombre">Nombre</th>
-            <th scope="Edad">Apellido</th>
-            <th scope="Apellido">Edad</th>
-            <th scope="Correo">Correo</th>
-            <th scope="Activo">Activo</th>
-            <th scope="Fecha">Dia Inscripcion</th>
+            <th scope="Nombre">Curso</th>
+            <th scope="Edad">Impartido por</th>
+            <th scope="Apellido">Hora</th>
+            <th scope="Correo">Ubicacion</th>
+            <th scope="Activo">Lugares Disponibles</th>
             <th scope="Eliminar">Eliminar</th>
+            <th scope="Eliminar">Editar</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let cliente of clientes; index as i">
-            <td>{{cliente.data.Nombre}}</td>
-            <td>{{cliente.data.Apellido}}</td>
-            <td>{{cliente.data.Edad}}</td>
-            <td>{{cliente.data.Correo}}</td>
-            <td>{{cliente.data.Activo}}</td>
-            <td>{{cliente.data.DiaInscripcion}}</td>
-            <td><button type="button" class="btn btn-success" (click)="deleteClient(cliente.id)"><i
-                  class="fas fa-trash-alt"></i> Eliminar</button></td>
-                 
-                 
-                  <td *ngIf="cliente==clientes[0]"  rowspan="20">
-                    <button (click)="grafica()">Estadisticas</button>
-                    <div style="display: block" *ngIf="mostrarGraf==true">
-                        <canvas baseChart
-                                [datasets]="barChartData"
-                                [labels]="barChartLabels"
-                                [options]="barChartOptions"
-                                [legend]="barChartLegend"
-                                [chartType]="barChartType">
-                        </canvas>
-                    </div>
-              </td>
-
-
+          <tr *ngFor="let curso of cursos">
+            <td>{{ curso.data.Curso }}</td>
+            <td>{{ curso.data.Imparte }}</td>
+            <td>{{ curso.data.Hora }}</td>
+            <td>{{ curso.data.Ubicacion }}</td>
+            <td>{{ curso.data.Lugares }}</td>
+            <td>
+              <button
+                type="button"
+                mat-raised-button 
+                color="warn"
+                (click)="deleteCurso(curso.id)"
+              >
+                <i class="fas fa-trash-alt"></i> Eliminar
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                mat-raised-button 
+                color="primary"
+                (click)="editCurso(curso.id)"
+              >
+                <i class="fas fa-pencil-alt"></i> Editar
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="row">
-      <div class="col-12 mt-5">
-        <h1>Informacion Cursos</h1>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="Nombre">Curso</th>
-              <th scope="Edad">Impartido por</th>
-              <th scope="Apellido">Hora</th>
-              <th scope="Correo">Ubicacion</th>
-              <th scope="Activo">Lugares Disponibles</th>
-              <th scope="Eliminar">Eliminar</th>
-              <th scope="Eliminar">Editar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let curso of cursos">
-              <td>{{curso.data.Curso}}</td>
-              <td>{{curso.data.Imparte}}</td>
-              <td>{{curso.data.Hora}}</td>
-              <td>{{curso.data.Ubicacion}}</td>
-              <td>{{curso.data.Lugares}}</td>
-              <td>
-                <button type="button" class="btn btn-success" (click)="deleteCurso(curso.id)">
-                  <i class="fas fa-trash-alt"></i> Eliminar
-                </button>
-              </td>
-              <td>
-                <button type="button" class="btn btn-success" (click)="editCurso(curso.id)">
-                  <i class="fas fa-pencil-alt"></i> Editar
-                </button>
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-12 mt-5">
-        <form (ngSubmit)="newCurso(newCursoForm.value)" [formGroup]="newCursoForm">
-          <h1>Registrar Curso</h1>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Curso: </label>
-            <input type="text" formControlName="Curso" class="form-control" placeholder="Nombre">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Hora</label>
-            <input type="text" formControlName="Hora" class="form-control" placeholder="Hora">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Impartida Por</label>
-            <input type="text" formControlName="Imparte" class="form-control" placeholder="Nombre">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Lugares</label>
-            <input type="number" formControlName="Lugares" class="form-control" placeholder="Lugares">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Ubicacion</label>
-            <input type="text" formControlName="Ubicacion" class="form-control" placeholder="Ubicacion">
-          </div>
-          <button type="submit" class="btn btn-large" [disabled]="!newCursoForm.valid">Agregar</button>
-        </form>
-      </div>
-  
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-5 col-12">
+      <h2 class="mat-display-2">Registra un nuevo curso o modifica uno ya existente.</h2>
+      <img src="../../assets/curso.png" class="img-fluid" alt="">
+    </div>
+    <div class="col-md-7 col-12">
+      <form
+        (ngSubmit)="newCurso(newCursoForm.value)"
+        [formGroup]="newCursoForm"
+      >
+        <h2 class="mat-display-2 accent-color">Registrar Curso</h2>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Curso: </label>
+          <input
+            type="text"
+            formControlName="Curso"
+            class="form-control"
+            placeholder="Nombre"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Hora</label>
+          <input
+            type="text"
+            formControlName="Hora"
+            class="form-control"
+            placeholder="Hora"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Impartida Por</label>
+          <input
+            type="text"
+            formControlName="Imparte"
+            class="form-control"
+            placeholder="Nombre"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Lugares</label>
+          <input
+            type="number"
+            formControlName="Lugares"
+            class="form-control"
+            placeholder="Lugares"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Ubicacion</label>
+          <input
+            type="text"
+            formControlName="Ubicacion"
+            class="form-control"
+            placeholder="Ubicacion"
+          />
+        </div>
+        <button
+          type="submit"
+          mat-raised-button color="accent"
+          class="block"
+          [disabled]="!newCursoForm.valid"
+        >
+          Agregar
+        </button>
+      </form>
     </div>
   </div>
+</div>
+<app-footer></app-footer>

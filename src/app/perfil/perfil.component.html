@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-12 mt-5">
-        <h1>Informacion clientes</h1>
+        <h1>Informacion Personal</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -13,14 +13,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-show="false" *ngFor="let cliente of clientes">
-                    <td>{{cliente.data.Nombre}}</td>
-                    <td>{{cliente.data.Apellido}}</td>
-                    <td>{{cliente.data.Edad}}</td>
-                    <td>{{cliente.data.Correo}}</td>
-                    <td>{{cliente.data.Activo}}</td>
-                    <td>{{cliente.data.DiaInscripcion}}</td>
-                </tr>
+                <ng-container ng-show="false" *ngFor="let cliente of clientes">
+                    <tr *ngIf="cliente.data.Correo === correo">
+                        <td>{{cliente.data.Nombre}}</td>
+                        <td>{{cliente.data.Apellido}}</td>
+                        <td>{{cliente.data.Edad}}</td>
+                        <td>{{cliente.data.Correo}}</td>
+                        <td>{{cliente.data.Activo}}</td>
+                        <td>{{cliente.data.DiaInscripcion}}</td>
+                    </tr>
+
+                </ng-container>
+
             </tbody>
         </table>
     </div>
@@ -46,19 +50,18 @@
                         <td>{{curso.data.Lugares}}</td>
                         <td>
                             <div class="col-8">
-                                <qrcode qrc-element-type="text" 
-                                    [qrdata]= "cad.concat(salto,
+                                <qrcode qrc-element-type="text" [qrdata]="cad.concat(salto,
                                     salto,cad1,cursos[i].data.Curso 
                                     ,salto,cad2,cursos[i].data.Imparte 
                                     ,salto,cad3,cursos[i].data.Hora 
                                     ,salto,cad4,cursos[i].data.Lugares
                                     ,salto,salto
-                                    )" >
-                                
-                                
-                                </qrcode >  
-                            </div>  
-                         </td>
+                                    )">
+
+
+                                </qrcode>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

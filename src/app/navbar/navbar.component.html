@@ -1,56 +1,93 @@
-<mat-toolbar color="primary" class="mat-typography" >
-    <div fxHide.gt-xs>
-        <button mat-icon-button (click)="onToggleSidenav()">
-            <mat-icon>menu</mat-icon>
-        </button>
-    </div>
-    <div>
-        <a routerLink="home"><img src="../../assets/logomorado.png" alt=""></a>
-    </div>
-    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-            <li>
-                <a routerLink="curses"><mat-icon>whatshot</mat-icon>Cursos</a>
-            </li>
-            <li>
-                <a routerLink="about"><mat-icon>emoji_people</mat-icon> Acerca de</a>
-            </li>
-            <ul *ngIf="user$ | async as user ; else login">
-                <li *ngIf="user">
-                    <a class="nav-link" (click)="onLogout()">Logout <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" (click)="ruta()"><small>{{user?.email}}</small></a>
-                </li>
-            </ul>
-         
-            <li>
-                <a routerLink="contact"><mat-icon>contact_phone</mat-icon> Contacto</a>
-            </li>
-            <li>
-                <a routerLink="faq"><mat-icon><i class="fas fa-info-circle"></i></mat-icon> FAQ</a>
-            </li>
-            <ng-template #login>
-                <li>
-                    <a routerLink="admin"><mat-icon>login</mat-icon>Login</a>
-                </li>
-                <li>
-                    <a routerLink="registrar"><mat-icon>login</mat-icon>Registrar</a>
-                </li>
-            </ng-template>
-            <li>
-                <div >
-                    <button mat-raised-button color="primary" (click)="start()">Iniciar Lectura</button>
-                    <button mat-raised-button color="primary" (click)="pause()"> Pausar </button>
-                    <button mat-raised-button color="primary"(click)="resume()"> Reanudar </button>
+<mat-toolbar color="primary" class="mat-typography">
+  <div fxHide.gt-sm>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <a routerLink="home"><img src="../../assets/logomorado.png" alt="" /></a>
+  </div>
+  <div fxHide.gt-sm>
+    <ng-container *ngIf="user$ | async as user; else login">
+        <mat-list-item [matMenuTriggerFor]="menu">
+          <mat-icon>unfold_more</mat-icon>
+          <a matline>Perfil</a>
+        </mat-list-item>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="ruta(user?.email)">{{ user?.email }}</button>
+          <button mat-menu-item (click)="onLogout()" *ngIf="user">
+            Cerrar Sesion
+          </button>
+        </mat-menu>
+      </ng-container>
+      <ng-template #login>
+        <mat-list-item [matMenuTriggerFor]="menu">
+          <mat-icon>unfold_more</mat-icon>
+          <a matline>Mi Espacio</a>
+        </mat-list-item>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item routerLink="admin"><mat-icon>login</mat-icon>Login</a>
+          <a mat-menu-item routerLink="registrar"><mat-icon>login</mat-icon>Registrar</a>
+        </mat-menu>
+      </ng-template>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.sm fxHide.xs>
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+      <li>
+        <a routerLink="curses"><mat-icon>whatshot</mat-icon>Cursos</a>
+      </li>
+      <li>
+        <a routerLink="about"><mat-icon>emoji_people</mat-icon> Acerca de</a>
+      </li>
+      <li>
+        <a routerLink="contact"><mat-icon>contact_phone</mat-icon> Contacto</a>
+      </li>
+      <li>
+        <a routerLink="faq"
+          ><mat-icon><i class="fas fa-info-circle"></i></mat-icon> FAQ</a
+        >
+      </li>
+      <li>
+        <mat-list-item [matMenuTriggerFor]="audio">
+          <mat-icon>unfold_more</mat-icon>
+          <a matline>Accesibilidad</a>
+        </mat-list-item>
+        <mat-menu #audio="matMenu">
+          <button mat-menu-item  (click)="start()">Iniciar Lectura</button>
+                    <button mat-menu-item (click)="pause()"> Pausar </button>
+                    <button mat-menu-item (click)="resume()"> Reanudar </button>
                     <br>
                     <select #langSelect *ngIf="speechData" (change)="setLanguage(langSelect.value)">
                     <option [value]="i" *ngFor="let voice of speechData.voices;let i = index;">
                       {{voice.name}} - {{voice.lang}}
                     </option>
-                  </select>
-                  </div>
-            </li>
-        </ul>
-    </div>
+                    </select>
+        </mat-menu>
+      </li>
+      <li>
+        <ng-container *ngIf="user$ | async as user; else login">
+          <mat-list-item [matMenuTriggerFor]="menu">
+            <mat-icon>unfold_more</mat-icon>
+            <a matline>Perfil</a>
+          </mat-list-item>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="ruta(user?.email)">{{ user?.email }}</button>
+            <button mat-menu-item (click)="onLogout()" *ngIf="user">
+              Cerrar Sesion
+            </button>
+          </mat-menu>
+        </ng-container>
+        <ng-template #login>
+          <mat-list-item [matMenuTriggerFor]="menu">
+            <mat-icon>unfold_more</mat-icon>
+            <a matline>Mi Espacio</a>
+          </mat-list-item>
+          <mat-menu #menu="matMenu">
+            <a mat-menu-item routerLink="admin"><mat-icon>login</mat-icon>Login</a>
+            <a mat-menu-item routerLink="registrar"><mat-icon>login</mat-icon>Registrar</a>
+          </mat-menu>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
 </mat-toolbar>

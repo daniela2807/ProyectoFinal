@@ -29,11 +29,16 @@ body {
 }
 
 .link:hover {
+  text-decoration: none;
   color: #69f0ae;
 }
 
 .mat-divider.primary-color {
   border-top-color: #9c27b0;
+}
+
+.block {
+  width: 100%;
 }
 
 .img img {
