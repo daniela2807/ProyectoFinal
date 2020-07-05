@@ -47,13 +47,13 @@ export class NavbarComponent implements OnInit {
     this.spk.resume();
   }
 
-  ruta(){
+  ruta(correo: string){
     let route = this.router;
     this.firestoreservice.afAuth.onAuthStateChanged(function(user){
       if (user.email === 'admin@hotmail.com') {
         route.navigate(['/perfiladmi']);
       } else {
-        route.navigate(['/perfil']);
+        route.navigate(['/perfil', correo]);
       }
     });
   }

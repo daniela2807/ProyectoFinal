@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'curses', component: CursesComponent},
-  { path: 'perfil', component: PerfilComponent},
+  { path: 'perfil/:correo', component: PerfilComponent},
   { path: 'registrar', component: RegisterComponent},
   { path: 'perfiladmi', component: PerfiladmiComponent},
   { path: 'faq', component: FaqComponent},

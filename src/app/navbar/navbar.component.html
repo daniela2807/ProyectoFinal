@@ -14,7 +14,7 @@
           <a matline>Perfil</a>
         </mat-list-item>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="ruta()">{{ user?.email }}</button>
+          <button mat-menu-item (click)="ruta(user?.email)">{{ user?.email }}</button>
           <button mat-menu-item (click)="onLogout()" *ngIf="user">
             Cerrar Sesion
           </button>
@@ -71,7 +71,7 @@
             <a matline>Perfil</a>
           </mat-list-item>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="ruta()">{{ user?.email }}</button>
+            <button mat-menu-item (click)="ruta(user?.email)">{{ user?.email }}</button>
             <button mat-menu-item (click)="onLogout()" *ngIf="user">
               Cerrar Sesion
             </button>

@@ -1,7 +1,12 @@
+
 import { FirestoreService } from "./../firestore.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
+<<<<<<< HEAD
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+=======
+import {ActivatedRoute , Params, Router} from '@angular/router';
+>>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
 
 @Component({
   selector: "app-perfil",
@@ -12,8 +17,10 @@ export class PerfilComponent implements OnInit {
   public cursos = [];
   public cursos2 = [];
   public clientes = [];
-  public user$: Observable<any> = this.firestoreservice.afAuth.user;
+  public user = this.firestoreservice.afAuth.user;
   mostrarCubo: boolean = false;
+  public correo;
+
 
   auxData: string;
   auxData2: string;  //Cambios 
@@ -23,11 +30,18 @@ export class PerfilComponent implements OnInit {
   cad2: string ="Profesor: ";
   cad3: string ="Horario: ";
   cad4: string ="Cupos: ";
+  
   ngxQrcode2: any;
 
+<<<<<<< HEAD
   constructor(private firestoreservice: FirestoreService, private modalService: NgbModal) {}
+=======
+  constructor(private firestoreservice: FirestoreService, private route: ActivatedRoute) {}
+>>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
 
   ngOnInit() {
+    this.correo=this.route.snapshot.paramMap.get('correo');
+    console.log(this.user);
     this.firestoreservice.getClientes().subscribe((clienteSnapshot) => {
       this.clientes = [];
       clienteSnapshot.forEach((ClienteData: any) => {
