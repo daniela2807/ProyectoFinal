@@ -14,4 +14,20 @@
     <a mat-list-item routerLink="faq" (click)="onSidenavClose()">
         <mat-icon><i class="fas fa-info-circle"></i></mat-icon><span class="nav-caption">Preguntas Frecuentes</span>
     </a>
+    <a>
+        <mat-list-item [matMenuTriggerFor]="audio">
+          <mat-icon><i class="fas fa-assistive-listening-systems"></i></mat-icon>
+          <a matline>Accesibilidad</a>
+        </mat-list-item>
+        <mat-menu #audio="matMenu">
+          <button mat-menu-item  (click)="start()"><i class="fas fa-play fa-xs"></i> Iniciar Lectura</button>
+                    <button mat-menu-item (click)="pause()"><i class="fas fa-pause fa-xs"></i> Pausar </button>
+                    <button mat-menu-item (click)="resume()"><i class="fas fa-redo fa-xs"></i> Reanudar </button>
+                    <select #langSelect *ngIf="speechData" (change)="setLanguage(langSelect.value)">
+                    <option [value]="i" *ngFor="let voice of speechData.voices;let i = index;">
+                      {{voice.name}} - {{voice.lang}}
+                    </option>
+                    </select>
+        </mat-menu>
+    </a>
   </mat-nav-list>
