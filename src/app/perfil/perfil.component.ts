@@ -1,6 +1,7 @@
 import { FirestoreService } from "./../firestore.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-perfil",
@@ -24,7 +25,7 @@ export class PerfilComponent implements OnInit {
   cad4: string ="Cupos: ";
   ngxQrcode2: any;
 
-  constructor(private firestoreservice: FirestoreService) {}
+  constructor(private firestoreservice: FirestoreService, private modalService: NgbModal) {}
 
   ngOnInit() {
     this.firestoreservice.getClientes().subscribe((clienteSnapshot) => {
@@ -61,6 +62,10 @@ export class PerfilComponent implements OnInit {
     this.mostrarCubo = true;
 
     console.log(this.cursos2[2]);
+  }
+
+  openWindowCustomClass(content) {
+    this.modalService.open(content, { windowClass: 'dark-modal', centered: true });
   }
 
 }

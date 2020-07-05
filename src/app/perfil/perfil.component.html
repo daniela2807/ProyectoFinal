@@ -1,7 +1,7 @@
 <div class="container">
     <div class="col-12 mt-5">
-        <h1>Informacion clientes</h1>
-        <table class="table">
+        <h2 class="mat-display-3">Informacion clientes</h2>
+        <table class="table table-dark">
             <thead>
                 <tr>
                     <th scope="Nombre">Nombre</th>
@@ -26,8 +26,8 @@
     </div>
     <div class="row">
         <div class="col-12 mt-5">
-            <h1>Informacion Cursos</h1>
-            <table class="table">
+            <h2 class="mat-display-3">Informacion Cursos</h2>
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th scope="Nombre">Curso</th>
@@ -35,6 +35,7 @@
                         <th scope="Apellido">Hora</th>
                         <th scope="Correo">Ubicacion</th>
                         <th scope="Activo">Lugares Disponibles</th>
+                        <th>Información del Curso</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,21 +45,29 @@
                         <td>{{curso.data.Hora}}</td>
                         <td>{{curso.data.Ubicacion}}</td>
                         <td>{{curso.data.Lugares}}</td>
-                        <td>
-                            <div class="col-8">
+                        <td><button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)" id="btn{{i}}">Ver QR</button></td>
+                        <ng-template #content let-modal>
+                            <div class="modal-header">
+                              <h4 class="modal-title">Información del Curso</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body text-center">
                                 <qrcode qrc-element-type="text" 
-                                    [qrdata]= "cad.concat(salto,
-                                    salto,cad1,cursos[i].data.Curso 
-                                    ,salto,cad2,cursos[i].data.Imparte 
-                                    ,salto,cad3,cursos[i].data.Hora 
-                                    ,salto,cad4,cursos[i].data.Lugares
-                                    ,salto,salto
-                                    )" >
-                                
-                                
-                                </qrcode >  
-                            </div>  
-                         </td>
+                                [qrdata]= "cad.concat(salto,
+                                salto,cad1,curso.data.Curso 
+                                ,salto,cad2,curso.data.Imparte 
+                                ,salto,cad3,curso.data.Hora 
+                                ,salto,cad4,curso.data.Lugares
+                                ,salto,salto
+                                )" >
+                            </qrcode > 
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                            </div>
+                          </ng-template>
                     </tr>
                 </tbody>
             </table>

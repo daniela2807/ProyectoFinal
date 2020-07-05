@@ -5,6 +5,7 @@
   fxLayoutGap="30px"
   fxLayoutGap.xs="30px"
   class="mb-5"
+  id="toRead"
 >
   <div class="img">
     <img src="../../assets/about.png" alt="" />
@@ -18,20 +19,29 @@
     fxLayoutGap="30px"
     fxLayoutGap.xs="30px"
   >
+    <p class="oculto">Cónocenos. Smart Gym fue creado con el propósito de entregar fitness de alta 
+      calidad para todos. En un ambiente cómodo y sin presiones.
+    </p>
     <mat-card class="example-card" fxFlex="1 1 33%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-          <mat-icon>done</mat-icon>
+          <mat-icon><i class="fas fa-check fa-lg"></i></mat-icon>
         </div>
-        <mat-card-title>Facilidades</mat-card-title>
-        <mat-card-subtitle>Autonomía</mat-card-subtitle>
+        <mat-card-title
+          >Facilidades
+          <p class="oculto">,</p>
+        </mat-card-title>
+        <mat-card-subtitle
+          >Autonomía
+          <p class="oculto">.</p></mat-card-subtitle
+        >
       </mat-card-header>
       <img mat-card-image src="../../assets/gym.jpg" />
       <mat-card-content>
         <p>
           Transformamos lo complicado en simple. Pensando en tu comodidad,
           contamos con diferentes servicios online como inscripción,
-          transferencia de unidad, etc. Así como entrenamientos pensados para
+          matriculación en cursos, etc. Así como entrenamientos pensados para
           que los realices de forma autónoma.
         </p>
       </mat-card-content>
@@ -39,10 +49,10 @@
     <mat-card class="example-card" fxFlex="1 1 33%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-          <mat-icon>map</mat-icon>
+          <mat-icon><i class="fas fa-map-marked-alt fa-lg"></i></mat-icon>
         </div>
-        <mat-card-title>Presencia</mat-card-title>
-        <mat-card-subtitle>Movilidad</mat-card-subtitle>
+        <mat-card-title>Presencia <p class="oculto">,</p></mat-card-title>
+        <mat-card-subtitle>Movilidad <p class="oculto">.</p></mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="../../assets/mujercbarra.jpg" />
       <mat-card-content>
@@ -57,10 +67,10 @@
     <mat-card class="example-card" fxFlex="1 1 33%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-          <mat-icon>accessibility_new</mat-icon>
+          <mat-icon><i class="fas fa-universal-access fa-lg"></i></mat-icon>
         </div>
-        <mat-card-title>Accesibilidad</mat-card-title>
-        <mat-card-subtitle>Tecnología</mat-card-subtitle>
+        <mat-card-title>Accesibilidad <p class="oculto">,</p></mat-card-title>
+        <mat-card-subtitle>Tecnología <p class="oculto">.</p></mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="../../assets/gimansio.png" />
       <mat-card-content>
@@ -73,13 +83,16 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <p class="oculto">Entrenamientos. En Samrt Gym los entrenamientos son pensados y personalizados
+    de acuerdo a los objetivos de cada persona.
+  </p>
   <div class="img">
     <img src="../../assets/entrenamientosbanner.png" alt="" />
   </div>
   <div class="centrado">
-    <h1 class="mat-h1 accent-color">EQUIPOS</h1>
+    <h1 class="mat-h1 accent-color">EQUIPOS <p class="oculto">.</p></h1>
     <p>
-      Todos los gimnasios Smart Gym cuentan con equipos de alta calidad <br> 
+      Todos los gimnasios Smart Gym cuentan con equipos de alta calidad <br />
       y tecnología, diseñados para mejorar tu rendimiento y seguridad.
     </p>
   </div>
@@ -94,50 +107,50 @@
     <mat-card class="example-card" fxFlex="1 1 33%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-          <mat-icon><i class="fas fa-dumbbell"></i></mat-icon>
+          <mat-icon><i class="fas fa-dumbbell fa-lg"></i></mat-icon>
         </div>
-        <mat-card-title>Área de musculación</mat-card-title>
+        <mat-card-title>Área de musculación <p class="oculto">.</p></mat-card-title>
       </mat-card-header>
       <img mat-card-image src="../../assets/muscle.jpg" />
       <mat-card-content>
         <p>
-            El área de musculación se encuentra dividida en dos partes, 
-            siendo una de ellas el área de peso libre, y otra con aparatos 
-            de última generación diseñados para trabajar cada uno de los 
-            músculos de forma segura y efectiva.
+          El área de musculación se encuentra dividida en dos partes, siendo una
+          de ellas el área de peso libre, y otra con aparatos de última
+          generación diseñados para trabajar cada uno de los músculos de forma
+          segura y efectiva.
         </p>
       </mat-card-content>
     </mat-card>
     <mat-card class="example-card" fxFlex="1 1 33%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-          <mat-icon>directions_run</mat-icon>
+          <mat-icon><i class="fas fa-running fa-lg"></i></mat-icon>
         </div>
-        <mat-card-title>Caminadora</mat-card-title>
+        <mat-card-title>Caminadora <p class="oculto">.</p></mat-card-title>
       </mat-card-header>
       <img mat-card-image src="../../assets/caminadora.jpg" />
       <mat-card-content>
         <p>
-            A pesar de ser la más tradicional, la caminadora continua siendo uno 
-            de los equipos más eficientes cuando se trata de entrenamiento 
-            cardiovascular, pues además de proporcionar la perdida de peso y gasto 
-            calórico, también trabaja el acondicionamiento físico y respiratorio.
+          A pesar de ser la más tradicional, la caminadora continua siendo uno
+          de los equipos más eficientes cuando se trata de entrenamiento
+          cardiovascular, pues además de proporcionar la perdida de peso y gasto
+          calórico, también trabaja el acondicionamiento físico y respiratorio.
         </p>
       </mat-card-content>
     </mat-card>
     <mat-card class="example-card" fxFlex="1 1 33%">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-          <mat-icon>rowing</mat-icon>
+          <mat-icon><i class="fas fa-bolt fa-lg"></i></mat-icon>
         </div>
-        <mat-card-title>Remo</mat-card-title>
+        <mat-card-title>Remo <p class="oculto">.</p></mat-card-title>
       </mat-card-header>
       <img mat-card-image src="../../assets/remo.jpg" />
       <mat-card-content>
         <p>
-            El Remo es un equipo cardiovascular muy eficaz, capaz de trabajar una gran 
-            gama de músculos. El equipo, que es un simulador de remo, está indicado 
-            para la quema de calorias.
+          El Remo es un equipo cardiovascular muy eficaz, capaz de trabajar una
+          gran gama de músculos. El equipo, que es un simulador de remo, está
+          indicado para la quema de calorias.
         </p>
       </mat-card-content>
     </mat-card>
