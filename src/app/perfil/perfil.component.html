@@ -1,12 +1,9 @@
 <div class="container">
     <div class="col-12 mt-5">
-<<<<<<< HEAD
         <h2 class="mat-display-3">Informacion clientes</h2>
         <table class="table table-dark">
-=======
         <h1>Informacion Personal</h1>
         <table class="table">
->>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
             <thead>
                 <tr>
                     <th scope="Nombre">Nombre</th>
@@ -26,13 +23,32 @@
                         <td>{{cliente.data.Correo}}</td>
                         <td>{{cliente.data.Activo}}</td>
                         <td>{{cliente.data.DiaInscripcion}}</td>
+                        <td>
+                            <qrcode qrc-element-type="text" 
+                            [qrdata]= "cad.concat(salto,
+                            salto,cad00
+                            ,salto,cad01,cliente.data.Nombre
+                            ,salto,cad02,cliente.data.Apellido 
+                            ,salto,cad03,cliente.data.Edad
+                            ,salto,cad04,cliente.data.Correo
+                            ,salto,cad05,cliente.data.Activo
+                            ,salto,cad06,cliente.data.DiaInscripcion
+                            ,salto,salto
+                            )" >
+                        </qrcode > </td>
+                    
                     </tr>
 
                 </ng-container>
-
-            </tbody>
-        </table>
-    </div>
+ 
+                  
+                </tbody>
+            
+            
+         </table>
+    </table>
+</div>
+    
     <div class="row">
         <div class="col-12 mt-5">
             <h2 class="mat-display-3">Informacion Cursos</h2>
@@ -54,7 +70,6 @@
                         <td>{{curso.data.Hora}}</td>
                         <td>{{curso.data.Ubicacion}}</td>
                         <td>{{curso.data.Lugares}}</td>
-<<<<<<< HEAD
                         <td><button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)" id="btn{{i}}">Ver QR</button></td>
                         <ng-template #content let-modal>
                             <div class="modal-header">
@@ -78,7 +93,6 @@
                               <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
                             </div>
                           </ng-template>
-=======
                         <td>
                             <div class="col-8">
                                 <qrcode qrc-element-type="text" [qrdata]="cad.concat(salto,
@@ -93,7 +107,6 @@
                                 </qrcode>
                             </div>
                         </td>
->>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
                     </tr>
                 </tbody>
             </table>

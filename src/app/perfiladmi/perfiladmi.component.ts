@@ -27,6 +27,19 @@ export class PerfiladmiComponent implements OnInit {
   contador5: number = 0;
   contador6: number = 0;
 
+
+  
+  // Grafica dona cursos y miembros
+  mostrarGraf2: boolean = false;
+  lugares2 = [];
+  contador01: number = 0;
+  contador02: number = 0;
+  public doughnutChartLabels = ["Miembros", "Cursos"];
+  public doughnutChartData = [this.contador01, this.contador02];
+  public doughnutChartType = "doughnut";
+
+
+
   public barChartOptions = {
     scaleShowVerticalLines: false,
     maintainAspectRatio: false,
@@ -47,6 +60,41 @@ export class PerfiladmiComponent implements OnInit {
   public barChartData = [];
 
   public cursos2 = [];
+
+  
+  // grafica  miembros mensuales
+  mostrarGraf3: boolean = false;
+  lugares3 = [];
+  contadorUno: number = 0;
+  contadorDos: number = 0;
+  contadorTres: number = 0;
+  contadorCuatro: number = 0;
+  contadorCinco: number = 0;
+  contadorSeis: number = 0;
+  contadorSiete: number = 0;
+  contadorOcho: number = 0;
+  contadorNueve: number = 0;
+  contadorDiez: number = 0;
+  contadorOnce: number = 0;
+  contadorDoce: number = 0;
+
+  public doughnutChartLabels2 = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+  public doughnutChartData2 = [];
+  public doughnutChartType2 = "doughnut";
+
 
   public newCursoForm = new FormGroup({
     Curso: new FormControl("", Validators.required),
@@ -79,6 +127,8 @@ export class PerfiladmiComponent implements OnInit {
         //client.data.DiaInscripcion = new Date(client.data.DiaInscripcion * 1000).toLocaleString();
         this.clientes.push(client);
 
+
+        this.contador01++;
         switch (client.data.Edad) {
           case 10:
           case 11:
@@ -155,13 +205,104 @@ export class PerfiladmiComponent implements OnInit {
           default:
             console.log("No lo hará.");
         }
+
+        console.log(
+          "no entre" +
+            client.data.DiaInscripcion[0] +
+            "es" +
+            client.data.DiaInscripcion[1] +
+            "es" +
+            client.data.DiaInscripcion[2] +
+            "es" +
+            client.data.DiaInscripcion[3] +
+            "es" +
+            client.data.DiaInscripcion[4] +
+            "es" +
+            client.data.DiaInscripcion[5] +
+            "es" +
+            client.data.DiaInscripcion[6]
+        );
+        if (
+          client.data.DiaInscripcion[3] <= 7 ||
+          client.data.DiaInscripcion[2] <= 7
+        ) {
+          console.log(
+            "entree" +
+              client.data.DiaInscripcion[0] +
+              "es" +
+              client.data.DiaInscripcion[1] +
+              "es" +
+              client.data.DiaInscripcion[2] +
+              "es" +
+              client.data.DiaInscripcion[3] +
+              "es" +
+              client.data.DiaInscripcion[4] +
+              "es" +
+              client.data.DiaInscripcion[5] +
+              "es" +
+              client.data.DiaInscripcion[6]
+          );
+          if (
+            (client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) ==
+            1
+          ) {
+            this.contadorUno++;
+          } else if (
+            (client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) ==
+            2
+          ) {
+            this.contadorDos++;
+          } else if (
+            (client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) ==
+            3
+          ) {
+            this.contadorTres++;
+          } else if (
+            (client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) ==
+            4
+          ) {
+            this.contadorCuatro++;
+          } else if (
+            (client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) ==
+            5
+          ) {
+            this.contadorCinco++;
+          } else if (
+            (client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) ==
+            6
+          ) {
+            this.contadorSeis++;
+            console.log("entre3");
+          } else if (
+           ( client.data.DiaInscripcion[3] == 7 ||
+            client.data.DiaInscripcion[2] == 7)
+          ) {
+            this.contadorSiete++;
+
+            console.log("entre2");
+            console.log("AQUII" + this.contadorSiete);
+          }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==8){
+            this.contadorOcho++ ;
+           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==9){
+            this.contadorNueve++ ;
+           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==10){
+            this.contadorDiez++ ;
+           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==11){
+            this.contadorOnce++ ;
+           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==12){
+            this.contadorDoce++ ;
+           }
+        }
+
+
+
       });
     });
 
     this.firestoreservice.getCursos().subscribe((cursoSnapshot) => {
       this.cursos = [];
       cursoSnapshot.forEach((CursoData: any) => {
-        // this.contador2++;
+         this.contador02++;
         this.cursos.push({
           id: CursoData.payload.doc.id,
           data: CursoData.payload.doc.data(),
@@ -230,6 +371,50 @@ export class PerfiladmiComponent implements OnInit {
       button.blur();
     }
   }
+
+    //cursos y miembros
+  public grafica2() {
+    this.mostrarGraf2 = true;
+    this.doughnutChartData = [this.contador01, this.contador02];
+    
+  }
+
+  public grafica3() {
+    let buttonvalue = document.getElementById("grafica2").innerText;
+    let button = document.getElementById("grafica2");
+    if (buttonvalue == "Ocultar Grafica") {
+      document.getElementById("grafica2").innerText = "Miembros mensuales";
+      this.mostrarGraf3 = false;
+      button.blur();
+    } else {
+      document.getElementById("grafica2").innerText = "Ocultar Grafica";
+    this.mostrarGraf3 = true;
+    this.doughnutChartData2 = [
+      
+          this.contadorUno,
+          this.contadorDos,
+          this.contadorTres,
+          this.contadorCuatro,
+          this.contadorCinco,
+          this.contadorSeis,
+          this.contadorSiete,
+          this.contadorOcho,
+          this.contadorNueve,
+          this.contadorDiez,
+          this.contadorOnce,
+          this.contadorDoce,
+       
+       
+      
+    ];
+    
+    button.blur();
+    
+        }
+      }
+    
+
+
 
   public deleteCurso(documentId) {
     this.firestoreservice.deleteCurso(documentId).then(

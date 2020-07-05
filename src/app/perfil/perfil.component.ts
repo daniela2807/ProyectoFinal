@@ -2,11 +2,8 @@
 import { FirestoreService } from "./../firestore.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-<<<<<<< HEAD
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-=======
 import {ActivatedRoute , Params, Router} from '@angular/router';
->>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-perfil",
@@ -31,13 +28,18 @@ export class PerfilComponent implements OnInit {
   cad3: string ="Horario: ";
   cad4: string ="Cupos: ";
   
+  cad00:  string ="--Informacion Personal--";
+  cad01: string ="Nombre: ";
+  cad02: string ="Apellido: ";
+  cad03: string ="Edad: ";
+  cad04: string ="Correo: ";
+  cad05: string ="Activo: ";
+  cad06: string ="Dia de Inscripcion: ";
+
   ngxQrcode2: any;
 
-<<<<<<< HEAD
-  constructor(private firestoreservice: FirestoreService, private modalService: NgbModal) {}
-=======
-  constructor(private firestoreservice: FirestoreService, private route: ActivatedRoute) {}
->>>>>>> adb43ab7b6f911834e7a6e45134141a0cb3cccb9
+
+  constructor(private firestoreservice: FirestoreService, private route: ActivatedRoute, private modalService: NgbModal) {}
 
   ngOnInit() {
     this.correo=this.route.snapshot.paramMap.get('correo');
