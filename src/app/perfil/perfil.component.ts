@@ -2,13 +2,8 @@
 import { FirestoreService } from "./../firestore.service";
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-<<<<<<< HEAD
 import {ActivatedRoute , Params, Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-=======
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {ActivatedRoute , Params, Router} from '@angular/router';
->>>>>>> 2431506dcd616062c19a92c6bc4b1e15df43ff2a
 
 @Component({
   selector: "app-perfil",
@@ -42,18 +37,12 @@ export class PerfilComponent implements OnInit {
   cad06: string ="Dia de Inscripcion: ";
 
   ngxQrcode2: any;
-
-<<<<<<< HEAD
-
-  constructor(private firestoreservice: FirestoreService, private route: ActivatedRoute, private modalService: NgbModal) {}
-=======
   //para mostrar el spinner mientras se carga la info
   showSpinner: boolean = true;
   showSpinner1: boolean = true;
 
   constructor(private firestoreservice: FirestoreService, private route: ActivatedRoute, private modalService: NgbModal) {}
   
->>>>>>> 2431506dcd616062c19a92c6bc4b1e15df43ff2a
 
   ngOnInit() {
     this.correo=this.route.snapshot.paramMap.get('correo');

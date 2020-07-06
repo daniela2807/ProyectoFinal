@@ -380,8 +380,18 @@ export class PerfiladmiComponent implements OnInit {
 
     //cursos y miembros
   public grafica2() {
-    this.mostrarGraf2 = true;
-    this.doughnutChartData = [this.contador01, this.contador02];
+    let buttonvalue = document.getElementById("grafica3").innerText;
+    let button = document.getElementById("grafica3");
+    if (buttonvalue == "Ocultar Grafica") {
+      document.getElementById("grafica3").innerText = "Estadisticas Cursos y Miembros Generales";
+      this.mostrarGraf2 = false;
+      button.blur();
+    } else {
+      document.getElementById("grafica3").innerText = "Ocultar Grafica";
+      this.mostrarGraf2 = true;
+      this.doughnutChartData = [this.contador01, this.contador02];
+    }
+    
     
   }
 

@@ -1,47 +1,85 @@
-<div class="container-fluid">
-  <div class="col-12 mt-5 table-responsive">
-    <h2 class="mat-display-2 accent-color">Información Clientes</h2>
-    <mat-spinner color="accent" style="margin: 2% auto;" *ngIf="showSpinner"></mat-spinner>
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="Nombre">Nombre</th>
-          <th scope="Edad">Apellido</th>
-          <th scope="Apellido">Edad</th>
-          <th scope="Correo">Correo</th>
-          <th scope="Activo">Activo</th>
-          <th scope="Fecha">Dia Inscripcion</th>
-          <th scope="Eliminar">Eliminar</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cliente of clientes; index as i">
-          <td>{{ cliente.data.Nombre }}</td>
-          <td>{{ cliente.data.Apellido }}</td>
-          <td>{{ cliente.data.Edad }}</td>
-          <td>{{ cliente.data.Correo }}</td>
-          <td>{{ cliente.data.Activo }}</td>
-          <td>{{ cliente.data.DiaInscripcion }}</td>
-          <td>
-            <button
-              type="button"
-              mat-raised-button 
-              color="warn"
-              (click)="deleteClient(cliente.id)"
-            >
-              <i class="fas fa-trash-alt"></i> Eliminar
-            </button>
-          </td>
-
-        </tr>
-      </tbody>
-    </table>
+<div class="container-fluid" id="toRead">
+  <div class="row">
+    <div class="col-12 mt-5 table-responsive">
+      <h2 class="mat-display-2 accent-color">Información Clientes</h2>
+      <p class="oculto">.</p>
+      <mat-spinner
+        color="accent"
+        style="margin: 2% auto;"
+        *ngIf="showSpinner"
+      ></mat-spinner>
+      <table class="table table-dark">
+        <thead>
+          <p class="oculto">A continuación se mencionan los clientes matriculados actualmente. Se proporciona la 
+            siguiente información.
+          </p>
+          <tr>
+            <th scope="Nombre">Nombre</th>
+            <p class="oculto">.</p>
+            <th scope="Edad">Apellido</th>
+            <p class="oculto">.</p>
+            <th scope="Apellido">Edad</th>
+            <p class="oculto">.</p>
+            <th scope="Correo">Correo</th>
+            <p class="oculto">. Si está actualmente</p>
+            <th scope="Activo">Activo</th>
+            <p class="oculto">o no.</p>
+            <th scope="Fecha">Día Inscripcion</th>
+            <p class="oculto">. Botón para</p>
+            <th scope="Eliminar">Eliminar</th>
+            <p class="oculto">.</p>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes; index as i">
+            <td>{{ cliente.data.Nombre }}</td>
+            <p class="oculto">,</p>
+            <td>{{ cliente.data.Apellido }}</td>
+            <p class="oculto">.</p>
+            <td>{{ cliente.data.Edad }}</td>
+            <p class="oculto">años.</p>
+            <td>{{ cliente.data.Correo }}</td>
+            <p class="oculto">. activo igual a </p>
+            <td>{{ cliente.data.Activo }}</td>
+            <p class="oculto">. Fecha de inscripción: </p>
+            <td>{{ cliente.data.DiaInscripcion }}</td>
+            <p class="oculto">. Botón</p>
+            <td>
+              <button
+                type="button"
+                mat-raised-button
+                color="warn"
+                (click)="deleteClient(cliente.id)"
+              >
+                <i class="fas fa-trash-alt"></i> Eliminar
+              </button>
+            </td>
+            <p class="oculto">.</p>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="row mt-5">
-    <div class="col-12" *ngFor="let cliente of clientes">      
+    <div class="col-12" *ngFor="let cliente of clientes">
       <div *ngIf="cliente == clientes[0]" rowspan="20">
-        <button mat-raised-button id="grafica" class="block" color="primary"(click)="grafica()">Estadisticas</button>
-        <div *ngIf="mostrarGraf == true" id="Chart" class="mt-5" style="background-color: #BDBDBD">
+        <p class="oculto">Botón para mostrar</p>
+        <button
+          mat-raised-button
+          id="grafica"
+          class="block"
+          color="primary"
+          (click)="grafica()"
+        >
+          Estadisticas
+        </button>
+        <p class="oculto">.</p>
+        <div
+          *ngIf="mostrarGraf == true"
+          id="Chart"
+          class="mt-5"
+          style="background-color: #bdbdbd;"
+        >
           <canvas
             baseChart
             [datasets]="barChartData"
@@ -52,81 +90,138 @@
           >
           </canvas>
         </div>
-        <button mat-raised-button id="grafica2" class="block" color="primary" (click)="grafica3()">Miembros Mensuales</button>
-                <div *ngIf="mostrarGraf3==true" id="Chart" class="mt-5" style="background-color: #BDBDBD">
-                  <canvas baseChart
-                      [data]="doughnutChartData2"
-                      [labels]="doughnutChartLabels2"
-                      [chartType]="doughnutChartType2"></canvas>
-                    </div>
+        <p class="oculto">Botón para mostrar gráfica de </p>
+        <button
+          mat-raised-button
+          id="grafica2"
+          class="block"
+          color="primary"
+          (click)="grafica3()"
+        >
+          Miembros Mensuales
+        </button>
+        <p class="oculto">.</p>
+        <div
+          *ngIf="mostrarGraf3 == true"
+          id="Chart"
+          class="mt-5"
+          style="background-color: #bdbdbd;"
+        >
+          <canvas
+            baseChart
+            [data]="doughnutChartData2"
+            [labels]="doughnutChartLabels2"
+            [chartType]="doughnutChartType2"
+          ></canvas>
         </div>
-        
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-12 mt-5">
       <h2 class="mat-display-2 accent-color">Información Cursos</h2>
-      <mat-spinner color="accent" style="margin: 2% auto;" *ngIf="showSpinner1"></mat-spinner>
+      <p class="oculto">A continuación se presenta la información de los cursos activos actualmente.</p>
+      <mat-spinner
+        color="accent"
+        style="margin: 2% auto;"
+        *ngIf="showSpinner1"
+      ></mat-spinner>
       <table class="table table-dark">
         <thead>
+          <p class="oculto">Se muestra el nombre del </p>
           <tr>
             <th scope="Nombre">Curso</th>
+            <p class="oculto">.</p>
             <th scope="Edad">Impartido por</th>
+            <p class="oculto">.</p>
             <th scope="Apellido">Hora</th>
+            <p class="oculto">.</p>
             <th scope="Correo">Ubicacion</th>
+            <p class="oculto">. Cantidad de</p>
             <th scope="Activo">Lugares Disponibles</th>
+            <p class="oculto">. Botón para </p>
             <th scope="Eliminar">Eliminar</th>
+            <p class="oculto"> Curso. Botón para </p>
             <th scope="Eliminar">Editar</th>
+            <p class="oculto"> datos del curso.</p>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let curso of cursos">
             <td>{{ curso.data.Curso }}</td>
+            <p class="oculto">. Imparte</p>
             <td>{{ curso.data.Imparte }}</td>
+            <p class="oculto">.</p>
             <td>{{ curso.data.Hora }}</td>
+            <p class="oculto">.</p>
             <td>{{ curso.data.Ubicacion }}</td>
+            <p class="oculto">.Lugares disponibles</p>
             <td>{{ curso.data.Lugares }}</td>
+            <p class="oculto">. Botón</p>
             <td>
               <button
                 type="button"
-                mat-raised-button 
+                mat-raised-button
                 color="warn"
                 (click)="deleteCurso(curso.id)"
               >
                 <i class="fas fa-trash-alt"></i> Eliminar
               </button>
+              <p class="oculto">.</p>
             </td>
+            <p class="oculto">Botón</p>
             <td>
               <button
                 type="button"
-                mat-raised-button 
+                mat-raised-button
                 color="primary"
                 (click)="editCurso(curso.id)"
               >
                 <i class="fas fa-pencil-alt"></i> Editar
               </button>
+              <p class="oculto">.</p>
             </td>
-            <td *ngIf="curso==cursos[0]"  rowspan="5">
-                <button (click)="grafica2()">Estadisticas Cursos y Miembros Generales</button>
-                <div style="display: block" *ngIf="mostrarGraf2==true">
-                  <canvas baseChart
-                      [data]="doughnutChartData"
-                      [labels]="doughnutChartLabels"
-                      [chartType]="doughnutChartType"></canvas>
-                    
-        </div>
-      </td>
-
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12" *ngFor="let curso of cursos">
+      <div *ngIf="curso == cursos[0]" rowspan="5">
+        <p class="oculto">Botón para mostrar grafica de </p>
+        <button
+          mat-raised-button
+          class="block"
+          color="primary"
+          id="grafica3"
+          (click)="grafica2()"
+        >
+          Estadisticas Cursos y Miembros Generales
+        </button>
+        <p class="oculto">.</p>
+        <div
+          style="display: block;"
+          style="background-color: #bdbdbd;"
+          *ngIf="mostrarGraf2 == true"
+        >
+          <canvas
+            baseChart
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row mt-5">
     <div class="col-md-5 col-12">
-      <h2 class="mat-display-2">Registra un nuevo curso o modifica uno ya existente.</h2>
-      <img src="../../assets/curso.png" class="img-fluid" alt="">
+      <p class="oculto">.</p>
+      <h2 class="mat-display-2">
+        Registra un nuevo curso o modifica uno ya existente.
+      </h2>
+      <img src="../../assets/curso.png" class="img-fluid" alt="" />
     </div>
     <div class="col-md-7 col-12">
       <form
@@ -134,6 +229,7 @@
         [formGroup]="newCursoForm"
       >
         <h2 class="mat-display-2 accent-color">Registrar Curso</h2>
+        <p class="oculto">.</p>
         <div class="form-group">
           <label for="exampleInputEmail1">Curso: </label>
           <input
@@ -144,7 +240,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Hora</label>
+          <label for="exampleInputEmail1">Hora:</label>
           <input
             type="text"
             formControlName="Hora"
@@ -153,7 +249,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Impartida Por</label>
+          <label for="exampleInputPassword1">Impartida Por:</label>
           <input
             type="text"
             formControlName="Imparte"
@@ -162,7 +258,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Lugares</label>
+          <label for="exampleInputEmail1">Lugares:</label>
           <input
             type="number"
             formControlName="Lugares"
@@ -171,7 +267,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Ubicacion</label>
+          <label for="exampleInputPassword1">Ubicacion:</label>
           <input
             type="text"
             formControlName="Ubicacion"
@@ -181,14 +277,18 @@
         </div>
         <button
           type="submit"
-          mat-raised-button color="accent"
+          mat-raised-button
+          color="accent"
           class="block"
           [disabled]="!newCursoForm.valid"
         >
           Agregar
         </button>
+        <p class="oculto">.</p>
       </form>
     </div>
   </div>
+  <app-footer></app-footer>
+</div>
 
-<app-footer></app-footer>
+
