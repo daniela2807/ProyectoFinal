@@ -14,4 +14,8 @@ export class MessageService {
   firstapi(){
     return this._http.get('https://us-central1-entrega1-cd65d.cloudfunctions.net/app/home');
   }
+
+  calcularIMC(body){
+    return this._http.post('http://localhost:3000/imc',body);
+  }
 }
