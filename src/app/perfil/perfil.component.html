@@ -180,48 +180,5 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="mat-display-3">Cónoce tu IMC <small class="text-muted">(Índice de Masa Corporal)</small></h2>
-      <h4 class="mat-display-1">Esto te ayudará a saber como vas con tu cuerpo</h4>
-      <form [formGroup]="forma" (ngSubmit)="calcularIMC()">
-        <mat-form-field class="example-full-width">
-          <mat-label>Selecciona tu sexo: </mat-label>
-          <mat-select formControlName="sexo">
-            <mat-option selected value="Hombre">Hombre</mat-option>
-            <mat-option value="Mujer">Mujer</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Ingresa tu estatura (en mts. uno o dos puntos decimales):</mat-label>
-          <input matInput #correo type="text" formControlName="estatura" required>
-          <mat-error *ngIf="estatura.invalid">{{getErrorMessageE()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Ingresa tu peso (en kgs. uno o dos puntos decimales):</mat-label>
-          <input matInput type="text" formControlName="peso" required>
-          <mat-error *ngIf="peso.invalid">{{getErrorMessageP()}}</mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary" class="block" (click)="openWindowCustomClass(IMC)">Enviar Datos</button>
-        <ng-template #IMC let-modal>
-          <div class="modal-header">
-            <h4 class="modal-title">Resultado de tu IMC</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body text-center">
-            <p>Tu IMC es de: {{res_imc}}</p>
-            <p>Lo que te clasifica con un peso en nivel: {{res_nivel}}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-              Close
-            </button>
-          </div>
-        </ng-template>
-      </form>
-    </div>
-  </div>
   <app-footer></app-footer>
 </div>

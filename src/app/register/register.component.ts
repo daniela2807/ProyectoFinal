@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
       Correo: form.Correo,
       Contraseña: form.Contraseña
     }
-    if (form.Contraseña.length < 5) {
+    if (form.Contraseña.length < 6) {
       this.onError('La contraseña debe ser mayor a 6 caracteres :( ');
     }
     else if(form.Contraseña !== form.Contraseña2) {
