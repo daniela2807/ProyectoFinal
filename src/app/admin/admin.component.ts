@@ -1,26 +1,28 @@
-import { FirestoreService } from './../firestore.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NotificationsService } from 'angular2-notifications';
+import { FirestoreService } from "./../firestore.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Router } from "@angular/router";
+import { NotificationsService } from "angular2-notifications";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.css"],
 })
 export class AdminComponent implements OnInit {
   loginForm = new FormGroup({
-    Correo: new FormControl(''),
-    Contraseña: new FormControl(''),
+    Correo: new FormControl("", Validators.required),
+    Contraseña: new FormControl(""),
   });
 
+  constructor(
+    private authSvc: FirestoreService,
+    private router: Router,
+    private notificationService: NotificationsService
+  ) {}
 
-  constructor(private authSvc: FirestoreService, private router: Router, private notificationService: NotificationsService) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onLogin() {
     const { Correo, Contraseña } = this.loginForm.value;
@@ -28,20 +30,17 @@ export class AdminComponent implements OnInit {
     try {
       const user = await this.authSvc.login(Correo, Contraseña);
       //console.log(user)
-      if (Correo === 'admin@hotmail.com' && user) {
-        this.router.navigate(['/home']);
-      }
-      else if (user) {
+      if (Correo === "admin@hotmail.com" && user) {
+        this.router.navigate(["/home"]);
+      } else if (user) {
         //redirect to homepage
-        this.router.navigate(['/home']);
-      } else if(Correo == "" || Contraseña == ""){
-        this.onError('Por favor llena todo los campos >:( ');
+        this.router.navigate(["/home"]);
+      } else if (Correo == "" || Contraseña == "") {
+        this.onError("Por favor llena todo los campos >:( ");
+      } else {
+        this.onError("Cuenta no encontrada :( ");
       }
-      else {
-        this.onError('Cuenta no encontrada :( ');
-      }
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
     this.authSvc.login(Correo, Contraseña);
@@ -49,24 +48,26 @@ export class AdminComponent implements OnInit {
   }
 
   Restablecer(correo: string) {
-    console.log(correo);
-    this.authSvc.afAuth.sendPasswordResetEmail(correo).then(function(){
-      console.log("email enviado a"+correo);
-      //email enviado
-    }).catch(function(error){
-
-    });
+    if (!this.loginForm.invalid) {
+      console.log(correo);
+      this.authSvc.afAuth
+        .sendPasswordResetEmail(correo)
+        .then(function () {
+          console.log("email enviado a" + correo);
+          //email enviado
+        })
+        .catch(function (error) {});
+    } else {
+      this.onError("Llena el campo de correo por favor");
+    }
   }
 
-  onError(message){
-    this.notificationService.error('Error', message, {
-      position: ['bottom','right'],
+  onError(message) {
+    this.notificationService.error("Error", message, {
+      position: ["bottom", "right"],
       timeOut: 3500,
-      animate: 'fade',
-      showProgressBar: true
+      animate: "fade",
+      showProgressBar: true,
     });
   }
-
-  
-
 }

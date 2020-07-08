@@ -16,6 +16,7 @@ export class ContactComponent implements OnInit {
     Asunto: new FormControl('', Validators.required),
     Mensaje: new FormControl('', Validators.required),
   });
+  
 
   constructor(public _MessageService: MessageService, private notificacion: NotificationsService) { }
 
@@ -27,10 +28,21 @@ export class ContactComponent implements OnInit {
       //console.log(form);
       this._MessageService.sendMessage(form).subscribe(() => {
         console.log('Mensaje enviado correctamente');
+        this.onSuccess("Mensaje enviado correctamente");
+        this.contacto.reset();
       });
     } else{
       this.onError("Por favor llena los campos correctamente");
     }
+  }
+
+  onSuccess(message){
+    this.notificacion.success('Todo bien', message, {
+      position: ['bottom','right'],
+      timeOut: 3500,
+      animate: 'fade',
+      showProgressBar: true
+    });
   }
 
   onError(message){
