@@ -8,56 +8,58 @@
         style="margin: 2% auto;"
         *ngIf="showSpinner"
       ></mat-spinner>
-      <table class="table table-dark">
-        <thead>
-          <p class="oculto">A continuación se mencionan los clientes matriculados actualmente. Se proporciona la 
-            siguiente información.
-          </p>
-          <tr>
-            <th scope="Nombre">Nombre</th>
-            <p class="oculto">.</p>
-            <th scope="Edad">Apellido</th>
-            <p class="oculto">.</p>
-            <th scope="Apellido">Edad</th>
-            <p class="oculto">.</p>
-            <th scope="Correo">Correo</th>
-            <p class="oculto">. Si está actualmente</p>
-            <th scope="Activo">Activo</th>
-            <p class="oculto">o no.</p>
-            <th scope="Fecha">Día Inscripcion</th>
-            <p class="oculto">. Botón para</p>
-            <th scope="Eliminar">Eliminar</th>
-            <p class="oculto">.</p>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cliente of clientes; index as i">
-            <td>{{ cliente.data.Nombre }}</td>
-            <p class="oculto">,</p>
-            <td>{{ cliente.data.Apellido }}</td>
-            <p class="oculto">.</p>
-            <td>{{ cliente.data.Edad }}</td>
-            <p class="oculto">años.</p>
-            <td>{{ cliente.data.Correo }}</td>
-            <p class="oculto">. activo igual a </p>
-            <td>{{ cliente.data.Activo }}</td>
-            <p class="oculto">. Fecha de inscripción: </p>
-            <td>{{ cliente.data.DiaInscripcion }}</td>
-            <p class="oculto">. Botón</p>
-            <td>
-              <button
-                type="button"
-                mat-raised-button
-                color="warn"
-                (click)="deleteClient(cliente.id)"
-              >
-                <i class="fas fa-trash-alt"></i> Eliminar
-              </button>
-            </td>
-            <p class="oculto">.</p>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-dark">
+          <thead>
+            <p class="oculto">A continuación se mencionan los clientes matriculados actualmente. Se proporciona la 
+              siguiente información.
+            </p>
+            <tr>
+              <th scope="Nombre">Nombre</th>
+              <p class="oculto">.</p>
+              <th scope="Edad">Apellido</th>
+              <p class="oculto">.</p>
+              <th scope="Apellido">Edad</th>
+              <p class="oculto">.</p>
+              <th scope="Correo">Correo</th>
+              <p class="oculto">. Si está actualmente</p>
+              <th scope="Activo">Activo</th>
+              <p class="oculto">o no.</p>
+              <th scope="Fecha">Día Inscripcion</th>
+              <p class="oculto">. Botón para</p>
+              <th scope="Eliminar">Eliminar</th>
+              <p class="oculto">.</p>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes; index as i">
+              <td>{{ cliente.data.Nombre }}</td>
+              <p class="oculto">,</p>
+              <td>{{ cliente.data.Apellido }}</td>
+              <p class="oculto">.</p>
+              <td>{{ cliente.data.Edad }}</td>
+              <p class="oculto">años.</p>
+              <td>{{ cliente.data.Correo }}</td>
+              <p class="oculto">. activo igual a </p>
+              <td>{{ cliente.data.Activo }}</td>
+              <p class="oculto">. Fecha de inscripción: </p>
+              <td>{{ cliente.data.DiaInscripcion }}</td>
+              <p class="oculto">. Botón</p>
+              <td>
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="warn"
+                  (click)="deleteClient(cliente.id)"
+                >
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+              </td>
+              <p class="oculto">.</p>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div class="row mt-5">
@@ -126,64 +128,66 @@
         style="margin: 2% auto;"
         *ngIf="showSpinner1"
       ></mat-spinner>
-      <table class="table table-dark">
-        <thead>
-          <p class="oculto">Se muestra el nombre del </p>
-          <tr>
-            <th scope="Nombre">Curso</th>
-            <p class="oculto">.</p>
-            <th scope="Edad">Impartido por</th>
-            <p class="oculto">.</p>
-            <th scope="Apellido">Hora</th>
-            <p class="oculto">.</p>
-            <th scope="Correo">Ubicacion</th>
-            <p class="oculto">. Cantidad de</p>
-            <th scope="Activo">Lugares Disponibles</th>
-            <p class="oculto">. Botón para </p>
-            <th scope="Eliminar">Eliminar</th>
-            <p class="oculto"> Curso. Botón para </p>
-            <th scope="Eliminar">Editar</th>
-            <p class="oculto"> datos del curso.</p>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let curso of cursos">
-            <td>{{ curso.data.Curso }}</td>
-            <p class="oculto">. Imparte</p>
-            <td>{{ curso.data.Imparte }}</td>
-            <p class="oculto">.</p>
-            <td>{{ curso.data.Hora }}</td>
-            <p class="oculto">.</p>
-            <td>{{ curso.data.Ubicacion }}</td>
-            <p class="oculto">.Lugares disponibles</p>
-            <td>{{ curso.data.Lugares }}</td>
-            <p class="oculto">. Botón</p>
-            <td>
-              <button
-                type="button"
-                mat-raised-button
-                color="warn"
-                (click)="deleteCurso(curso.id)"
-              >
-                <i class="fas fa-trash-alt"></i> Eliminar
-              </button>
+      <div class="table-responsive">
+        <table class="table table-dark">
+          <thead>
+            <p class="oculto">Se muestra el nombre del </p>
+            <tr>
+              <th scope="Nombre">Curso</th>
               <p class="oculto">.</p>
-            </td>
-            <p class="oculto">Botón</p>
-            <td>
-              <button
-                type="button"
-                mat-raised-button
-                color="primary"
-                (click)="editCurso(curso.id)"
-              >
-                <i class="fas fa-pencil-alt"></i> Editar
-              </button>
+              <th scope="Edad">Impartido por</th>
               <p class="oculto">.</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <th scope="Apellido">Hora</th>
+              <p class="oculto">.</p>
+              <th scope="Correo">Ubicacion</th>
+              <p class="oculto">. Cantidad de</p>
+              <th scope="Activo">Lugares Disponibles</th>
+              <p class="oculto">. Botón para </p>
+              <th scope="Eliminar">Eliminar</th>
+              <p class="oculto"> Curso. Botón para </p>
+              <th scope="Eliminar">Editar</th>
+              <p class="oculto"> datos del curso.</p>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let curso of cursos">
+              <td>{{ curso.data.Curso }}</td>
+              <p class="oculto">. Imparte</p>
+              <td>{{ curso.data.Imparte }}</td>
+              <p class="oculto">.</p>
+              <td>{{ curso.data.Hora }}</td>
+              <p class="oculto">.</p>
+              <td>{{ curso.data.Ubicacion }}</td>
+              <p class="oculto">.Lugares disponibles</p>
+              <td>{{ curso.data.Lugares }}</td>
+              <p class="oculto">. Botón</p>
+              <td>
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="warn"
+                  (click)="deleteCurso(curso.id)"
+                >
+                  <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+                <p class="oculto">.</p>
+              </td>
+              <p class="oculto">Botón</p>
+              <td>
+                <button
+                  type="button"
+                  mat-raised-button
+                  color="primary"
+                  (click)="editCurso(curso.id)"
+                >
+                  <i class="fas fa-pencil-alt"></i> Editar
+                </button>
+                <p class="oculto">.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div class="row">

@@ -1,3 +1,4 @@
+import { NotificationsService } from 'angular2-notifications';
 import { MessageService } from './../services/message.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   res_imc: number = 0;
   res_nivel: string = "";
 
-  constructor(private imc: MessageService,  private modalService: NgbModal) {
+  constructor(private imc: MessageService,  private modalService: NgbModal, private notificationService: NotificationsService) {
     this.forma = new FormGroup({
       'sexo': this.sexo,
       'estatura': this.estatura, 
@@ -44,7 +45,7 @@ export class HomeComponent implements OnInit {
     //this.forma.reset(this.limpia);
   }
 
-  //Erorres en el form
+  //Errores en el form
   getErrorMessageE() {
     if (this.estatura.hasError('required')) {
       return 'Ingresa un valor, por favor';
@@ -59,12 +60,25 @@ export class HomeComponent implements OnInit {
   }
 
   openWindowCustomClass(content) {
-    this.modalService.open(content, { centered: true });
+    if(!this.forma.invalid){
+      this.modalService.open(content, { centered: true });
+    }
+    else{
+      this.onError("Por favor llena todo los campos correctamente");
+    }
   }
 
-
+  onError(message){
+    this.notificationService.error('Error', message, {
+      position: ['bottom','right'],
+      timeOut: 3500,
+      animate: 'fade',
+      showProgressBar: true
+    });
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

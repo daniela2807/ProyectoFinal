@@ -7,90 +7,92 @@
         style="margin: 2% auto;"
         *ngIf="showSpinner"
       ></mat-spinner>
-      <table class="table table-dark">
-        <thead>
-          <p class="oculto">Tu información se mostrará en el siguiente orden:</p>
-          <tr>
-            <th scope="Nombre">Nombre</th>
-            <p class="oculto">,</p>
-            <th scope="Edad">Apellido</th>
-            <p class="oculto">.</p>
-            <th scope="Apellido">Edad</th>
-            <p class="oculto">.</p>
-            <th scope="Correo">Correo</th>
-            <p class="oculto">. Estado de tu membresía</p>
-            <th scope="Activo">Activo</th>
-            <p class="oculto">o no.</p>
-            <th scope="Fecha">Día Inscripcion</th>
-            <p class="oculto">. Código QR con tu</p>
-            <th>Información Personal</th>
-            <p class="oculto">.</p>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container ng-show="false" *ngFor="let cliente of clientes">
-            <tr *ngIf="cliente.data.Correo === correo">
-              <td>{{ cliente.data.Nombre }}</td>
+      <div class="table-responsive">
+        <table class="table table-dark">
+          <thead>
+            <p class="oculto">Tu información se mostrará en el siguiente orden:</p>
+            <tr>
+              <th scope="Nombre">Nombre</th>
               <p class="oculto">,</p>
-              <td>{{ cliente.data.Apellido }}</td>
+              <th scope="Edad">Apellido</th>
               <p class="oculto">.</p>
-              <td>{{ cliente.data.Edad }}</td>
-              <p class="oculto"> años.</p>
-              <td>{{ cliente.data.Correo }}</td>
-              <p class="oculto">. Estado de membresía</p>
-              <td>{{ cliente.data.Activo }}</td>
-              <p class="oculto">. Fecha de inscripción</p>
-              <td>{{ cliente.data.DiaInscripcion }}</td>
-              <p class="oculto">. Botón para</p>
-              <td>
-                <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)">
-                  Ver QR
-                </button>
-              </td>
-              <p class="oculto">. </p>
-              <ng-template #content let-modal>
-                <div class="modal-header">
-                  <h4 class="modal-title">Información Personal</h4>
-                  <p class="oculto">.</p>
-                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body text-center">
-                  <qrcode qrc-element-type="text" [qrdata]="
-                      cad.concat(
-                        salto,
-                        salto,
-                        cad00,
-                        salto,
-                        cad01,
-                        cliente.data.Nombre,
-                        salto,
-                        cad02,
-                        cliente.data.Apellido,
-                        salto,
-                        cad03,
-                        cliente.data.Edad,
-                        salto,
-                        cad04,
-                        cliente.data.Correo,
-                        salto,
-                        cad05,
-                        cliente.data.Activo,
-                        salto,
-                        cad06,
-                        cliente.data.DiaInscripcion,
-                        salto,
-                        salto
-                      )
-                    ">
-                  </qrcode>
-                </div>
-              </ng-template>
+              <th scope="Apellido">Edad</th>
+              <p class="oculto">.</p>
+              <th scope="Correo">Correo</th>
+              <p class="oculto">. Estado de tu membresía</p>
+              <th scope="Activo">Activo</th>
+              <p class="oculto">o no.</p>
+              <th scope="Fecha">Día Inscripcion</th>
+              <p class="oculto">. Código QR con tu</p>
+              <th>Información Personal</th>
+              <p class="oculto">.</p>
             </tr>
-          </ng-container>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <ng-container ng-show="false" *ngFor="let cliente of clientes">
+              <tr *ngIf="cliente.data.Correo === correo">
+                <td>{{ cliente.data.Nombre }}</td>
+                <p class="oculto">,</p>
+                <td>{{ cliente.data.Apellido }}</td>
+                <p class="oculto">.</p>
+                <td>{{ cliente.data.Edad }}</td>
+                <p class="oculto"> años.</p>
+                <td>{{ cliente.data.Correo }}</td>
+                <p class="oculto">. Estado de membresía</p>
+                <td>{{ cliente.data.Activo }}</td>
+                <p class="oculto">. Fecha de inscripción</p>
+                <td>{{ cliente.data.DiaInscripcion }}</td>
+                <p class="oculto">. Botón para</p>
+                <td>
+                  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)">
+                    Ver QR
+                  </button>
+                </td>
+                <p class="oculto">. </p>
+                <ng-template #content let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title">Información Personal</h4>
+                    <p class="oculto">.</p>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <qrcode qrc-element-type="text" [qrdata]="
+                        cad.concat(
+                          salto,
+                          salto,
+                          cad00,
+                          salto,
+                          cad01,
+                          cliente.data.Nombre,
+                          salto,
+                          cad02,
+                          cliente.data.Apellido,
+                          salto,
+                          cad03,
+                          cliente.data.Edad,
+                          salto,
+                          cad04,
+                          cliente.data.Correo,
+                          salto,
+                          cad05,
+                          cliente.data.Activo,
+                          salto,
+                          cad06,
+                          cliente.data.DiaInscripcion,
+                          salto,
+                          salto
+                        )
+                      ">
+                    </qrcode>
+                  </div>
+                </ng-template>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -103,81 +105,83 @@
         *ngIf="showSpinner1"
       ></mat-spinner>
       <p class="oculto">.</p>
-      <table class="table table-dark">
-        <thead>
-          <p class="oculto">La información de los cursos se despliega en el siguiente orden:</p>
-          <tr>
-            <th scope="Nombre">Curso</th>
-            <p class="oculto">.</p>
-            <th scope="Edad">Impartido por</th>
-            <p class="oculto">.</p>
-            <th scope="Apellido">Hora</th>
-            <p class="oculto">.</p>
-            <th scope="Correo">Ubicacion</th>
-            <p class="oculto">.</p>
-            <th scope="Activo">Lugares Disponibles</th>
-            <p class="oculto">. Botón para mostrar código QR con</p>
-            <th>Información del Curso</th>
-            <p class="oculto">.</p>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let curso of cursos; index as i">
-            <td>{{ curso.data.Curso }}</td>
-            <p class="oculto">,</p>
-            <td>{{ curso.data.Imparte }}</td>
-            <p class="oculto">,</p>
-            <td>{{ curso.data.Hora }}</td>
-            <p class="oculto">,</p>
-            <td>{{ curso.data.Ubicacion }}</td>
-            <p class="oculto">, lugares disponibles</p>
-            <td>{{ curso.data.Lugares }}</td>
-            <p class="oculto">. Botón para</p>
-            <td>
-              <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)"
-                id="btn{{ i }}">
-                Ver QR
-              </button>
-            </td>
-            <p class="oculto">. </p>
-            <ng-template #content let-modal>
-              <div class="modal-header">
-                <h4 class="modal-title">Información del Curso</h4>
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                  <span aria-hidden="true">&times;</span>
+      <div class="table-responsive">
+        <table class="table table-dark">
+          <thead>
+            <p class="oculto">La información de los cursos se despliega en el siguiente orden:</p>
+            <tr>
+              <th scope="Nombre">Curso</th>
+              <p class="oculto">.</p>
+              <th scope="Edad">Impartido por</th>
+              <p class="oculto">.</p>
+              <th scope="Apellido">Hora</th>
+              <p class="oculto">.</p>
+              <th scope="Correo">Ubicacion</th>
+              <p class="oculto">.</p>
+              <th scope="Activo">Lugares Disponibles</th>
+              <p class="oculto">. Botón para mostrar código QR con</p>
+              <th>Información del Curso</th>
+              <p class="oculto">.</p>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let curso of cursos; index as i">
+              <td>{{ curso.data.Curso }}</td>
+              <p class="oculto">,</p>
+              <td>{{ curso.data.Imparte }}</td>
+              <p class="oculto">,</p>
+              <td>{{ curso.data.Hora }}</td>
+              <p class="oculto">,</p>
+              <td>{{ curso.data.Ubicacion }}</td>
+              <p class="oculto">, lugares disponibles</p>
+              <td>{{ curso.data.Lugares }}</td>
+              <p class="oculto">. Botón para</p>
+              <td>
+                <button class="btn btn-outline-primary mb-2 mr-2" (click)="openWindowCustomClass(content)"
+                  id="btn{{ i }}">
+                  Ver QR
                 </button>
-              </div>
-              <div class="modal-body text-center">
-                <qrcode qrc-element-type="text" [qrdata]="
-                    cad.concat(
-                      salto,
-                      salto,
-                      cad1,
-                      curso.data.Curso,
-                      salto,
-                      cad2,
-                      curso.data.Imparte,
-                      salto,
-                      cad3,
-                      curso.data.Hora,
-                      salto,
-                      cad4,
-                      curso.data.Lugares,
-                      salto,
-                      salto
-                    )
-                  ">
-                </qrcode>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
-                  Close
-                </button>
-              </div>
-            </ng-template>
-          </tr>
-        </tbody>
-      </table>
+              </td>
+              <p class="oculto">. </p>
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title">Información del Curso</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center">
+                  <qrcode qrc-element-type="text" [qrdata]="
+                      cad.concat(
+                        salto,
+                        salto,
+                        cad1,
+                        curso.data.Curso,
+                        salto,
+                        cad2,
+                        curso.data.Imparte,
+                        salto,
+                        cad3,
+                        curso.data.Hora,
+                        salto,
+                        cad4,
+                        curso.data.Lugares,
+                        salto,
+                        salto
+                      )
+                    ">
+                  </qrcode>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+                    Close
+                  </button>
+                </div>
+              </ng-template>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <app-footer></app-footer>

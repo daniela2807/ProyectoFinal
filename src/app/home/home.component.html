@@ -117,7 +117,10 @@
           <input matInput type="text" formControlName="peso" required>
           <mat-error *ngIf="peso.invalid">{{getErrorMessageP()}}</mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" class="block" (click)="openWindowCustomClass(IMC)">Enviar Datos</button>
+        <div>
+          <simple-notifications></simple-notifications>
+        </div>
+        <button mat-raised-button color="primary" class="mt-3 block" (click)="openWindowCustomClass(IMC)">Enviar Datos</button>
         <ng-template #IMC let-modal>
           <div class="modal-header">
             <h4 class="modal-title">Resultado de tu IMC</h4>

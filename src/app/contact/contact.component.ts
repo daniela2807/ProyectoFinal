@@ -1,6 +1,7 @@
+import { NotificationsService } from 'angular2-notifications';
 import { MessageService } from '../services/message.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -9,23 +10,36 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
   contacto = new FormGroup({
-    Nombre: new FormControl(''),
-    Apellido: new FormControl(''),
-    Correo: new FormControl(''),
-    Asunto: new FormControl(''),
-    Mensaje: new FormControl(''),
+    Nombre: new FormControl('', Validators.required),
+    Apellido: new FormControl('', Validators.required),
+    Correo: new FormControl('', Validators.required),
+    Asunto: new FormControl('', Validators.required),
+    Mensaje: new FormControl('', Validators.required),
   });
 
-  constructor(public _MessageService: MessageService) { }
+  constructor(public _MessageService: MessageService, private notificacion: NotificationsService) { }
 
   ngOnInit(): void {
   }
 
   Correo(form) {
-    console.log(form);
-    this._MessageService.sendMessage(form).subscribe(() => {
-      console.log('Mensaje enviado correctamente');
-   });
+    if(!this.contacto.invalid){
+      //console.log(form);
+      this._MessageService.sendMessage(form).subscribe(() => {
+        console.log('Mensaje enviado correctamente');
+      });
+    } else{
+      this.onError("Por favor llena los campos correctamente");
+    }
+  }
+
+  onError(message){
+    this.notificacion.error('Error', message, {
+      position: ['bottom','right'],
+      timeOut: 3500,
+      animate: 'fade',
+      showProgressBar: true
+    });
   }
 
 }

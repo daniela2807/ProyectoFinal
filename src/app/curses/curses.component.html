@@ -5,32 +5,40 @@
   fxLayoutGap.xs="0"
   id="toRead"
 >
-  <p class="oculto">Cursos Disponibles. Aqui tienes toda la gama de cursos disponibles.</p>
+  <p class="oculto">
+    Cursos Disponibles. Aqui tienes toda la gama de cursos disponibles.
+  </p>
   <div class="img">
     <img src="../../assets/cursos.png" alt="" />
   </div>
+  <h2 class="mat-display-3">Lista de Cursos Actualizada</h2>
   <div>
-    <div class="mat-elevation-z8">
-      <table class="table table-dark">
-        <tr>
-          <p class="oculto">Primero se te dirá el nombre del</p>
-          <th>Curso</th>
-          <p class="oculto">. Después</p>
-          <th>Impartido por</th>
-          <p class="oculto">. Finalmente la</p>
-          <th>Hora</th>
-          <p class="oculto">.</p>
-        </tr>
-        <tr *ngFor="let curso of cursos">
-          <td>{{curso.data.Curso}}</td>
-          <p class="oculto">,</p>
-          <td>{{curso.data.Imparte}}</td>
-          <p class="oculto">,</p>
-          <td>{{curso.data.Hora}}</td>
-          <p class="oculto">.</p>
-        </tr>
-      </table>
-    </div>
+    <mat-spinner
+      color="accent"
+      style="margin: 2% auto;"
+      *ngIf="showSpinner"
+    ></mat-spinner>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-dark">
+      <tr>
+        <p class="oculto">Primero se te dirá el nombre del</p>
+        <th>Curso</th>
+        <p class="oculto">. Después</p>
+        <th>Impartido por</th>
+        <p class="oculto">. Finalmente la</p>
+        <th>Hora</th>
+        <p class="oculto">.</p>
+      </tr>
+      <tr *ngFor="let curso of cursos">
+        <td>{{ curso.data.Curso }}</td>
+        <p class="oculto">,</p>
+        <td>{{ curso.data.Imparte }}</td>
+        <p class="oculto">,</p>
+        <td>{{ curso.data.Hora }}</td>
+        <p class="oculto">.</p>
+      </tr>
+    </table>
   </div>
   <app-footer></app-footer>
 </div>

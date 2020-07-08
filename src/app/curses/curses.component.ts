@@ -13,6 +13,7 @@ export class CursesComponent implements OnInit {
   columnas: string[] = ['Curso', 'Nombre', 'Cupo'];
   public cursos = [];
   dataSource = null;
+  showSpinner: boolean = true;
 
   constructor(public firestoreservice: FirestoreService) { }
 
@@ -32,6 +33,7 @@ export class CursesComponent implements OnInit {
           data: CursoData.payload.doc.data(),
         });
       });
+      this.showSpinner = false;
       //this.lugares;
     });
   }
