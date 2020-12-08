@@ -1,6 +1,6 @@
 import { NotificationsService } from 'angular2-notifications';
 import { MessageService } from '../services/message.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -17,10 +17,25 @@ export class ContactComponent implements OnInit {
     Mensaje: new FormControl('', Validators.required),
   });
   
+  
 
   constructor(public _MessageService: MessageService, private notificacion: NotificationsService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.initMap()
+  }
+
+
+  initMap(): void {
+    var coord = {lat:21.9112242 ,lng: -102.3139526};
+    var map = new google.maps.Map(document.getElementById('map'),{
+    zoom: 15,
+    center: coord
+    });
+    var marker = new google.maps.Marker({
+    position: coord,
+    map: map
+    });
   }
 
   Correo(form) {

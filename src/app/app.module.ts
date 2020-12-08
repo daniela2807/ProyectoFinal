@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
 
+import { GoogleMapsModule } from '@angular/google-maps'
+
 import { QRCodeModule } from 'angularx-qrcode';
 import { ChartsModule } from 'ng2-charts';
 
@@ -66,7 +68,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FlexLayoutModule,
     HttpClientModule,
     SimpleNotificationsModule.forRoot(),
-    NgbModule
+    NgbModule,
+    GoogleMapsModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
