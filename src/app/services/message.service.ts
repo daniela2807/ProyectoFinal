@@ -18,4 +18,8 @@ export class MessageService {
   calcularIMC(body){
     return this._http.post('http://localhost:3000/imc',body);
   }
+
+  getCursos(){
+    return this._http.get('http://localhost:3000/getCursos');
+  }
 }

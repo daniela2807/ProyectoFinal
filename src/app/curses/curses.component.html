@@ -29,13 +29,21 @@
         <p class="oculto">. Finalmente la</p>
         <th>Hora</th>
         <p class="oculto">.</p>
+        <th>Lugares</th>
+        <p class="oculto">.</p>
+        <th>Ubicacion</th>
+        <p class="oculto">.</p>
       </tr>
       <tr *ngFor="let curso of cursos">
-        <td>{{ curso.data.Curso }}</td>
+        <td>{{ curso.nombre }}</td>
         <p class="oculto">,</p>
-        <td>{{ curso.data.Imparte }}</td>
+        <td>{{ curso.imparte }}</td>
         <p class="oculto">,</p>
-        <td>{{ curso.data.Hora }}</td>
+        <td>{{ curso.hora }}</td>
+        <p class="oculto">.</p>
+        <td>{{ curso.lugares }}</td>
+        <p class="oculto">.</p>
+        <td>{{ curso.ubicacion }}</td>
         <p class="oculto">.</p>
       </tr>
     </table>

@@ -1,6 +1,7 @@
 import { FirestoreService } from './../firestore.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MessageService } from './../services/message.service';
 import {MatSort} from '@angular/material/sort'; 
 
 @Component({
@@ -15,7 +16,7 @@ export class CursesComponent implements OnInit {
   dataSource = null;
   showSpinner: boolean = true;
 
-  constructor(public firestoreservice: FirestoreService) { }
+  constructor(public curso: MessageService) { }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -24,16 +25,10 @@ export class CursesComponent implements OnInit {
     //   this.datos.push(new Articulo(x, `Curso ${x}`, Math.trunc(Math.random() * 30)));
     // this.dataSource = new MatTableDataSource<Articulo>(this.datos);
     // this.dataSource.sort = this.sort;
-    this.firestoreservice.getCursos().subscribe((cursoSnapshot) => {
+    this.curso.getCursos().subscribe((data:any)=> {
       this.cursos = [];
-      cursoSnapshot.forEach((CursoData: any) => {
-        // this.contador2++;
-        this.cursos.push({
-          id: CursoData.payload.doc.id,
-          data: CursoData.payload.doc.data(),
-        });
-      });
-      this.showSpinner = false;
+      this.cursos = data.data;
+      console.log(this.cursos);
       //this.lugares;
     });
   }
