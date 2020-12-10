@@ -99,7 +99,7 @@ function initMap(): void {
       this.geoCoder = new google.maps.Geocoder();
 
       this.directionsRenderer.setPanel(
-        document.getElementById("right-panel") as HTMLElement
+        document.getElementById("right-panel") as HTMLDivElement
       );
   
       const originInput = document.getElementById(

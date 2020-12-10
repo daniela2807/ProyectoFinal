@@ -38,7 +38,15 @@
     font-size: 13px;
     font-weight: 300;
   }
-  
+
+  #map {
+      height: 100%;
+  }
+
+  #mapsZone{
+      background-color: rgba(255, 255, 255, .7);
+  }
+
   #right-panel {
     font-family: "Roboto", "sans-serif";
     line-height: 30px;
@@ -59,20 +67,18 @@
   }
   
   #right-panel {
-    display: block;
-    height: 100vh;
-    direction: ltr;
-    float: left;
-    width: 100%;
+    height: 100%;
+    float: right;
+    width: 390px;
     overflow: auto;
   }
-
-  #mapsZone{
-      background-color:  rgba(255, 255, 255, 0.5);
-      padding: 1%;
-  }
-
+  
+  
   @media print {
+    #map {
+      height: 500px;
+      margin: 0;
+    }
   
     #right-panel {
       float: none;
