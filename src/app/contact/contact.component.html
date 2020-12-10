@@ -16,7 +16,7 @@
     fxLayoutGap="30px"
     fxLayoutGap.xs="0"
   >
-  <p class="oculto">Contáctanos. Habla con nosotros.</p>
+    <p class="oculto">Contáctanos. Habla con nosotros.</p>
     <div fxFlex="1 1 30%" class="ml-5">
       <h3 class="mat-h3 accent-color">¡Hola!</h3>
       <p>
@@ -71,30 +71,69 @@
     </div>
   </div>
   <div
-    class="container"
+  fxLayoutAlign="center center"
+  class="mt-4"
+  >
+    <h1 class="mat-display-3 accent-color">Ubícanos</h1>
+  </div>
+  <div
+    id="mapsZone"
     fxLayout="row"
     fxLayout.xs="column"
     fxLayoutAlign="center center"
     fxLayoutGap="30px"
     fxLayoutGap.xs="0"
+    style="height: 80vh;"
   >
     <div
-      fxFlex="1 1 30%"
-      fxLayout="column"
-      fxLayoutAlign="center center"
+      fxFlex="1 1 65%"
       fxLayoutGap="30px"
-    >
-    <h3 class="mat-h3 accent-color">Ubícanos</h3>
+      fxFlexFill
+      id="map"
+      >
     </div>
     <div
-      fxFlex="1 1 70%"
-      fxLayout="column"
-      fxLayoutAlign="center center"
+      fxFlex="1 1 35%"
       fxLayoutGap="30px"
-      id="map"
-      class="ml-5"
-      style="height: 60vh;"
-      >
+      fxFlexFill
+      id="right-panel"
+    >
+    </div>
+    <div style="display: none">
+      <input
+        id="origin-input"
+        class="controls"
+        type="text"
+        placeholder="Ingresa el origen"
+      />
+
+      <button mat-raised-button color="primary"
+      id="geolocation"
+      class="controls"
+      ><mat-icon>location_on</mat-icon></button>
+
+      <input
+        id="destination-input"
+        class="controls"
+        type="text"
+        placeholder="Ingresa el destino"
+      />
+
+      <div id="mode-selector" class="controls">
+        <input
+          type="radio"
+          name="type"
+          id="changemode-walking"
+          checked="checked"
+        />
+        <label for="changemode-walking">Walking</label>
+
+        <input type="radio" name="type" id="changemode-transit" />
+        <label for="changemode-transit">Transit</label>
+
+        <input type="radio" name="type" id="changemode-driving" />
+        <label for="changemode-driving">Driving</label>
+      </div>
     </div>
   </div>
   <app-footer></app-footer>
