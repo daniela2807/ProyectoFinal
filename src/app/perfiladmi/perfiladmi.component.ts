@@ -1,4 +1,5 @@
 import { FirestoreService } from "./../firestore.service";
+import { MessageService } from './../services/message.service';
 import { Component, OnInit, NgZone } from "@angular/core";
 import {
   FormGroup,
@@ -32,7 +33,7 @@ export class PerfiladmiComponent implements OnInit {
   contador6: number = 0;
 
 
-  
+
   // Grafica dona cursos y miembros
   mostrarGraf2: boolean = false;
   lugares2 = [];
@@ -65,7 +66,7 @@ export class PerfiladmiComponent implements OnInit {
 
   public cursos2 = [];
 
-  
+
   // grafica  miembros mensuales
   mostrarGraf3: boolean = false;
   lugares3 = [];
@@ -109,7 +110,7 @@ export class PerfiladmiComponent implements OnInit {
     id: new FormControl(""),
   });
 
-  constructor(private firestoreservice: FirestoreService) {
+  constructor(private firestoreservice: FirestoreService, private service: MessageService) {
     this.newCursoForm.setValue({
       Curso: "",
       Hora: "",
@@ -212,6 +213,26 @@ export class PerfiladmiComponent implements OnInit {
 
         console.log(
           "no entre" +
+          client.data.DiaInscripcion[0] +
+          "es" +
+          client.data.DiaInscripcion[1] +
+          "es" +
+          client.data.DiaInscripcion[2] +
+          "es" +
+          client.data.DiaInscripcion[3] +
+          "es" +
+          client.data.DiaInscripcion[4] +
+          "es" +
+          client.data.DiaInscripcion[5] +
+          "es" +
+          client.data.DiaInscripcion[6]
+        );
+        if (
+          client.data.DiaInscripcion[3] <= 7 ||
+          client.data.DiaInscripcion[2] <= 7
+        ) {
+          console.log(
+            "entree" +
             client.data.DiaInscripcion[0] +
             "es" +
             client.data.DiaInscripcion[1] +
@@ -225,26 +246,6 @@ export class PerfiladmiComponent implements OnInit {
             client.data.DiaInscripcion[5] +
             "es" +
             client.data.DiaInscripcion[6]
-        );
-        if (
-          client.data.DiaInscripcion[3] <= 7 ||
-          client.data.DiaInscripcion[2] <= 7
-        ) {
-          console.log(
-            "entree" +
-              client.data.DiaInscripcion[0] +
-              "es" +
-              client.data.DiaInscripcion[1] +
-              "es" +
-              client.data.DiaInscripcion[2] +
-              "es" +
-              client.data.DiaInscripcion[3] +
-              "es" +
-              client.data.DiaInscripcion[4] +
-              "es" +
-              client.data.DiaInscripcion[5] +
-              "es" +
-              client.data.DiaInscripcion[6]
           );
           if (
             (client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) ==
@@ -278,24 +279,24 @@ export class PerfiladmiComponent implements OnInit {
             this.contadorSeis++;
             console.log("entre3");
           } else if (
-           ( client.data.DiaInscripcion[3] == 7 ||
-            client.data.DiaInscripcion[2] == 7)
+            (client.data.DiaInscripcion[3] == 7 ||
+              client.data.DiaInscripcion[2] == 7)
           ) {
             this.contadorSiete++;
 
             console.log("entre2");
             console.log("AQUII" + this.contadorSiete);
-          }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==8){
-            this.contadorOcho++ ;
-           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==9){
-            this.contadorNueve++ ;
-           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==10){
-            this.contadorDiez++ ;
-           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==11){
-            this.contadorOnce++ ;
-           }else if((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2] ) ==12){
-            this.contadorDoce++ ;
-           }
+          } else if ((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) == 8) {
+            this.contadorOcho++;
+          } else if ((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) == 9) {
+            this.contadorNueve++;
+          } else if ((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) == 10) {
+            this.contadorDiez++;
+          } else if ((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) == 11) {
+            this.contadorOnce++;
+          } else if ((client.data.DiaInscripcion[3] || client.data.DiaInscripcion[2]) == 12) {
+            this.contadorDoce++;
+          }
         }
 
 
@@ -304,18 +305,12 @@ export class PerfiladmiComponent implements OnInit {
       this.showSpinner = false;
     });
 
-    this.firestoreservice.getCursos().subscribe((cursoSnapshot) => {
+    this.service.getCursos().subscribe((data: any) => {
       this.cursos = [];
-      cursoSnapshot.forEach((CursoData: any) => {
-         this.contador02++;
-        this.cursos.push({
-          id: CursoData.payload.doc.id,
-          data: CursoData.payload.doc.data(),
-        });
-      });
-      this.lugares;
-      this.showSpinner1 = false;
+      this.cursos = data.data;
     });
+    this.lugares;
+    this.showSpinner1 = false;
   }
 
   public deleteClient(documentId) {
@@ -378,7 +373,7 @@ export class PerfiladmiComponent implements OnInit {
     }
   }
 
-    //cursos y miembros
+  //cursos y miembros
   public grafica2() {
     let buttonvalue = document.getElementById("grafica3").innerText;
     let button = document.getElementById("grafica3");
@@ -391,8 +386,8 @@ export class PerfiladmiComponent implements OnInit {
       this.mostrarGraf2 = true;
       this.doughnutChartData = [this.contador01, this.contador02];
     }
-    
-    
+
+
   }
 
   public grafica3() {
@@ -404,95 +399,66 @@ export class PerfiladmiComponent implements OnInit {
       button.blur();
     } else {
       document.getElementById("grafica2").innerText = "Ocultar Grafica";
-    this.mostrarGraf3 = true;
-    this.doughnutChartData2 = [
-      
-          this.contadorUno,
-          this.contadorDos,
-          this.contadorTres,
-          this.contadorCuatro,
-          this.contadorCinco,
-          this.contadorSeis,
-          this.contadorSiete,
-          this.contadorOcho,
-          this.contadorNueve,
-          this.contadorDiez,
-          this.contadorOnce,
-          this.contadorDoce,
-       
-       
-      
-    ];
-    
-    button.blur();
-    
-        }
-      }
-    
+      this.mostrarGraf3 = true;
+      this.doughnutChartData2 = [
+
+        this.contadorUno,
+        this.contadorDos,
+        this.contadorTres,
+        this.contadorCuatro,
+        this.contadorCinco,
+        this.contadorSeis,
+        this.contadorSiete,
+        this.contadorOcho,
+        this.contadorNueve,
+        this.contadorDiez,
+        this.contadorOnce,
+        this.contadorDoce,
 
 
 
-  public deleteCurso(documentId) {
-    this.firestoreservice.deleteCurso(documentId).then(
-      () => {
-        console.log("Documento elimiando ");
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+      ];
+
+      button.blur();
+
+    }
   }
 
-  public newCurso(form, documentId = this.documentId) {
-    if (this.currentStatus === 1) {
-      let data = {
-        Curso: form.Curso,
-        Hora: form.Hora,
-        Imparte: form.Imparte,
-        Lugares: form.Lugares,
-        Ubicacion: form.Lugares,
-      };
-      this.firestoreservice.createCurso(data).then(
-        () => {
-          console.log("Documento creado");
-          this.newCursoForm.setValue({
-            Curso: "",
-            Hora: "",
-            Imparte: "",
-            Lugares: "",
-            Ubicacion: "",
-            id: "",
-          });
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
-    } else {
-      let data = {
-        Curso: form.Curso,
-        Hora: form.Hora,
-        Imparte: form.Imparte,
-        Lugares: form.Lugares,
-        Ubicacion: form.Ubicacion,
-      };
-      this.firestoreservice.updateCurso(documentId, data).then(
-        () => {
-          this.currentStatus = 1;
-          this.newCursoForm.setValue({
-            Curso: "",
-            Hora: "",
-            Imparte: "",
-            Lugares: "",
-            Ubicacion: "",
-            id: "",
-          });
-          console.log("Documento editado exitosamente");
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+
+
+  /* this.imc.calcularIMC(this.forma.value).subscribe((data:any)=>{
+     console.log("IMC"+data.imc);
+     console.log("Nivel"+data.nivel);
+     this.res_imc = data.imc;
+     this.res_nivel = data.nivel;
+ });
+*/
+  public deleteCurso(nombre) {
+    console.log(nombre);
+    this.service.deleteCurso(nombre).subscribe((data: any) => {
+    });
+    window.location.reload();
+  }
+
+  public newCurso(form) {
+    let data = {
+      Curso: form.Curso,
+      Hora: form.Hora,
+      Imparte: form.Imparte,
+      Lugares: form.Lugares,
+      Ubicacion: form.Ubicacion,
+    };
+    this.service.insertCurso(data).subscribe((data: any) => {
+      console.log("Documento creado");
+      this.newCursoForm.setValue({
+        Curso: "",
+        Hora: "",
+        Imparte: "",
+        Lugares: "",
+        Ubicacion: "",
+        id: "",
+      });
+    });
+    window.location.reload();
   }
 }

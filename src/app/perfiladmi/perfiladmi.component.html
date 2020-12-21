@@ -145,45 +145,32 @@
               <p class="oculto">. Botón para </p>
               <th scope="Eliminar">Eliminar</th>
               <p class="oculto"> Curso. Botón para </p>
-              <th scope="Eliminar">Editar</th>
-              <p class="oculto"> datos del curso.</p>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let curso of cursos">
-              <td>{{ curso.data.Curso }}</td>
+              <td>{{ curso.nombre }}</td>
               <p class="oculto">. Imparte</p>
-              <td>{{ curso.data.Imparte }}</td>
+              <td>{{ curso.imparte }}</td>
               <p class="oculto">.</p>
-              <td>{{ curso.data.Hora }}</td>
+              <td>{{ curso.hora }}</td>
               <p class="oculto">.</p>
-              <td>{{ curso.data.Ubicacion }}</td>
+              <td>{{ curso.ubicacion }}</td>
               <p class="oculto">.Lugares disponibles</p>
-              <td>{{ curso.data.Lugares }}</td>
+              <td>{{ curso.lugares }}</td>
               <p class="oculto">. Botón</p>
               <td>
                 <button
                   type="button"
                   mat-raised-button
                   color="warn"
-                  (click)="deleteCurso(curso.id)"
+                  (click)="deleteCurso(curso.nombre)"
                 >
                   <i class="fas fa-trash-alt"></i> Eliminar
                 </button>
                 <p class="oculto">.</p>
               </td>
               <p class="oculto">Botón</p>
-              <td>
-                <button
-                  type="button"
-                  mat-raised-button
-                  color="primary"
-                  (click)="editCurso(curso.id)"
-                >
-                  <i class="fas fa-pencil-alt"></i> Editar
-                </button>
-                <p class="oculto">.</p>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -223,7 +210,7 @@
     <div class="col-md-5 col-12">
       <p class="oculto">.</p>
       <h2 class="mat-display-2">
-        Registra un nuevo curso o modifica uno ya existente.
+        Registra un nuevo curso
       </h2>
       <img src="../../assets/curso.png" class="img-fluid" alt="" />
     </div>
